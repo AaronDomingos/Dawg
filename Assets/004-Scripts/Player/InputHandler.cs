@@ -58,13 +58,13 @@ public class InputHandler : MonoBehaviour
 
     private void HandleCharacterInputs()
     {
-        player.character.movement.MoveOnBoard(
+        player.character.movement.SetOnBoard(
             userInput.PlayerActions.Move.ReadValue<Vector2>());
     }
 
     private void HandleDroneInputs()
     {
-        player.drone.movement.MoveOffBoard(
+        player.drone.movement.SetOffBoard(
             userInput.PlayerActions.Move.ReadValue<Vector2>());
     }
 
@@ -85,18 +85,24 @@ public class InputHandler : MonoBehaviour
 
         if (userInput.AdminTesting.SpawnObject.WasReleasedThisFrame())
         {
-            GameObject objectRef = Instantiate(
-                player.interactablePrefab, 
-                player.character.transform.position,
-                quaternion.identity);
-            
-            objectRef.GetComponent<NetworkObject>().Spawn();
-            player.interactableInstance = objectRef;
+            SpawnObject();
         }
         
         if (userInput.PlayerActions.Interact.WasReleasedThisFrame())
         {
-            player.interactableInstance.GetComponent<InteractionComponent>().TryInteract();
+            GameObject obj = GameObject.Find("TestObjectSpawner").GetComponent<TestObjectSpawner>().objectInstance;
+            obj.GetComponent<InteractionComponent>().TryInteract();
         }
+
+        if (userInput.AdminTesting.StartSpawner.WasReleasedThisFrame())
+        {
+            GameObject.Find("MateriumSpawner").GetComponent<MateriumSpawner>().StartSpawning();
+            Debug.Log("Starting to Spawn");
+        }
+    }
+
+    private void SpawnObject()
+    {
+        GameObject.Find("TestObjectSpawner").GetComponent<TestObjectSpawner>().SpawnObjectServerRpc(player.character.transform.position);
     }
 }

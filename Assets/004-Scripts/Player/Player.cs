@@ -19,8 +19,6 @@ public class Player : NetworkBehaviour
     {
         state.EnableUser();
         state.SetOnboard();
-        
-        //interactable = GameObject.Find("InteractableObject");
     }
 
     private void Update()

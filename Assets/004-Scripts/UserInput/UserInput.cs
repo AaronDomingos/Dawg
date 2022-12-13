@@ -136,6 +136,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StartSpawner"",
+                    ""type"": ""Button"",
+                    ""id"": ""c2b73c5c-2a36-45dd-aa19-9b37e2db2497"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -158,6 +167,17 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpawnObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcafebed-d19c-4b43-8156-720ee9c8b0a0"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartSpawner"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -350,6 +370,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         m_AdminTesting = asset.FindActionMap("AdminTesting", throwIfNotFound: true);
         m_AdminTesting_TogglePlayer = m_AdminTesting.FindAction("TogglePlayer", throwIfNotFound: true);
         m_AdminTesting_SpawnObject = m_AdminTesting.FindAction("SpawnObject", throwIfNotFound: true);
+        m_AdminTesting_StartSpawner = m_AdminTesting.FindAction("StartSpawner", throwIfNotFound: true);
         // UserActions
         m_UserActions = asset.FindActionMap("UserActions", throwIfNotFound: true);
         m_UserActions_Escape = m_UserActions.FindAction("Escape", throwIfNotFound: true);
@@ -465,12 +486,14 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private IAdminTestingActions m_AdminTestingActionsCallbackInterface;
     private readonly InputAction m_AdminTesting_TogglePlayer;
     private readonly InputAction m_AdminTesting_SpawnObject;
+    private readonly InputAction m_AdminTesting_StartSpawner;
     public struct AdminTestingActions
     {
         private @UserInput m_Wrapper;
         public AdminTestingActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @TogglePlayer => m_Wrapper.m_AdminTesting_TogglePlayer;
         public InputAction @SpawnObject => m_Wrapper.m_AdminTesting_SpawnObject;
+        public InputAction @StartSpawner => m_Wrapper.m_AdminTesting_StartSpawner;
         public InputActionMap Get() { return m_Wrapper.m_AdminTesting; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -486,6 +509,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @SpawnObject.started -= m_Wrapper.m_AdminTestingActionsCallbackInterface.OnSpawnObject;
                 @SpawnObject.performed -= m_Wrapper.m_AdminTestingActionsCallbackInterface.OnSpawnObject;
                 @SpawnObject.canceled -= m_Wrapper.m_AdminTestingActionsCallbackInterface.OnSpawnObject;
+                @StartSpawner.started -= m_Wrapper.m_AdminTestingActionsCallbackInterface.OnStartSpawner;
+                @StartSpawner.performed -= m_Wrapper.m_AdminTestingActionsCallbackInterface.OnStartSpawner;
+                @StartSpawner.canceled -= m_Wrapper.m_AdminTestingActionsCallbackInterface.OnStartSpawner;
             }
             m_Wrapper.m_AdminTestingActionsCallbackInterface = instance;
             if (instance != null)
@@ -496,6 +522,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @SpawnObject.started += instance.OnSpawnObject;
                 @SpawnObject.performed += instance.OnSpawnObject;
                 @SpawnObject.canceled += instance.OnSpawnObject;
+                @StartSpawner.started += instance.OnStartSpawner;
+                @StartSpawner.performed += instance.OnStartSpawner;
+                @StartSpawner.canceled += instance.OnStartSpawner;
             }
         }
     }
@@ -649,6 +678,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     {
         void OnTogglePlayer(InputAction.CallbackContext context);
         void OnSpawnObject(InputAction.CallbackContext context);
+        void OnStartSpawner(InputAction.CallbackContext context);
     }
     public interface IUserActionsActions
     {

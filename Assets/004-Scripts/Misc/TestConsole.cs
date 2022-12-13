@@ -6,9 +6,10 @@ using UnityEngine;
 public class TestConsole : NetworkBehaviour
 {
     public SpriteRenderer sprite;
+    private Vector3 testMovement = new Vector3(.001f, 0f, 0f);
 
     [ClientRpc]
-    public void InteractClientRPC()
+    public void InteractClientRpc()
     {
         sprite.color = Color.green;
     }

@@ -114,6 +114,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "StartSpawner",
+                    "type": "Button",
+                    "id": "c2b73c5c-2a36-45dd-aa19-9b37e2db2497",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -136,6 +145,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpawnObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dcafebed-d19c-4b43-8156-720ee9c8b0a0",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartSpawner",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

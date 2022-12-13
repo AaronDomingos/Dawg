@@ -1,22 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class MovementComponent : MonoBehaviour
 {
     public Vector3 Direction = Vector3.zero;
     public Vector3 Momentum = Vector3.zero;
 
+    private float AccelerationRate = .05f;
     private float DecelerationRate = .99f;
     private float MinimumSpeed = .01f;
+    private float MaximumSpeed = .5f;
 
-    private float Speed = .01f;
+    private float Speed = 1f;
 
 
-    private void Update()
+    private void FixedUpdate()
     {
-        //transform.position += Momentum;
+        transform.position += Direction * Speed * Time.fixedDeltaTime;
 
         if (Momentum != Vector3.zero)
         {
@@ -25,16 +30,14 @@ public class MovementComponent : MonoBehaviour
         }
     }
 
-
-    public void MoveOnBoard(Vector3 direction)
+    public void SetOnBoard(Vector3 direction)
     {
-        transform.position += direction * Speed;
+        Direction = direction;
     }
-
-
-    public void MoveOffBoard(Vector3 direction)
+    
+    public void SetOffBoard(Vector3 direction)
     {
-        transform.position += direction * Speed;
+        Direction = direction * 5f;
     }
 
     private void HandleMomentum()
