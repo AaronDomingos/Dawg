@@ -5,7 +5,7 @@ using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Materium : MonoBehaviour
+public class Materium : NetworkBehaviour
 {
     public Vector3 Direction;
     public float Speed = 1f;

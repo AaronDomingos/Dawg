@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class ContainerController : NetworkBehaviour
     [SerializeField] private int StartingQuantity;
     [SerializeField] private int MaxQuantity;
 
+    // We may need to make these lists synced.
     public List<GameObject> ActivatedObjects = new List<GameObject>();
     public List<GameObject> DeactivatedObjects = new List<GameObject>();
 
@@ -38,7 +40,10 @@ public class ContainerController : NetworkBehaviour
             
             newObj.GetComponent<NetworkObject>().Spawn();
             
-            Deactivate(newObj);
+            //Deactivate(newObj);
+            newObj.SetActive(false);
+            DeactivatedObjects.Add(newObj);
+            
             Debug.Log(ObjectPrefab.name + " Created");
         }
     }
@@ -74,10 +79,23 @@ public class ContainerController : NetworkBehaviour
     /// <param name="obj"></param>
     public void Activate(GameObject obj)
     {
+        if (DeactivatedObjects.Contains(obj))
+        {
+            ActivateByIndexServerRpc(DeactivatedObjects.IndexOf(obj));
+        }
+        else
+        {
+            Debug.Log(obj.name + "could not be found or activated");
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void ActivateByIndexServerRpc(int index)
+    {
+        GameObject obj = DeactivatedObjects[index];
         DeactivatedObjects.Remove(obj);
         ActivatedObjects.Add(obj);
         obj.SetActive(true);
-        //Debug.Log(ObjectPrefab.name + " Activated");
     }
 
     /// <summary>
@@ -86,12 +104,25 @@ public class ContainerController : NetworkBehaviour
     /// <param name="obj"></param>
     public void Deactivate(GameObject obj)
     {
+        if (ActivatedObjects.Contains(obj))
+        {
+            DeactivateByIndexServerRpc(ActivatedObjects.IndexOf(obj));
+        }
+        else
+        {
+            Debug.Log(obj.name + "could not be found or deactivated");
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void DeactivateByIndexServerRpc(int index)
+    {
+        GameObject obj = ActivatedObjects[index];
         obj.SetActive(false);
         ActivatedObjects.Remove(obj);
         DeactivatedObjects.Add(obj);
-        
+
         obj.transform.position = DefaultPosition;
         obj.transform.rotation = Quaternion.identity;
-        //Debug.Log(ObjectPrefab.name + " Deactivated");
     }
 }
