@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
                 break;
         }
 
-        if (shouldRotate)
+        if (shouldRotate && Direction != Vector3.zero && Momentum != Vector3.zero)
         {
             Quaternion toRotate = Quaternion.LookRotation(
                 Vector3.forward, Momentum);

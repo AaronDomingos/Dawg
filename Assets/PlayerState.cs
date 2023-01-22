@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,9 @@ public class PlayerState : MonoBehaviour
         
         player.crew.gameObject.SetActive(true);
         player.drone.gameObject.SetActive(false);
+        
+        player.camera.RemoveAllCameraTargets();
+        player.camera.AddCameraTarget(player.crew.transform);
     }
 
     // Maybe pass it the drone component it'll be using?
@@ -43,5 +47,8 @@ public class PlayerState : MonoBehaviour
         
         player.drone.gameObject.SetActive(true);
         player.crew.gameObject.SetActive(false);
+        
+        player.camera.RemoveAllCameraTargets();
+        player.camera.AddCameraTarget(player.drone.transform);
     }
 }
