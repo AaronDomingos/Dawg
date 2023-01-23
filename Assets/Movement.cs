@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float MinimumSpeed = .01f;
-    [SerializeField] private float MaximumSpeed = .5f;
-    [SerializeField] private float AccelerationRate = .05f;
+    [SerializeField] private float MinimumSpeed = .001f;
+    [SerializeField] private float MaximumSpeed = .1f;
+    [SerializeField] private float AccelerationRate = .005f;
     [SerializeField] private float DecelerationRate = .99f;
 
     public MovementType movementType = MovementType.OnBoard;
@@ -94,6 +94,11 @@ public class Movement : MonoBehaviour
     public void SetDirection(Vector3 direction)
     {
         Direction = direction;
+    }
+
+    public void SetMomentum(Vector3 momentum)
+    {
+        Momentum = momentum;
     }
 
     public void SetAttraction(GameObject newTarget)
