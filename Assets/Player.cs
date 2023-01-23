@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Com.LuisPedroFonseca.ProCamera2D;
+using Mirror;
+using Mirror.Discovery;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     [SerializeField] private InputHandler inputHandler;
 
@@ -22,11 +24,14 @@ public class Player : MonoBehaviour
     private void Start()
     {
         state.EnableUser();
-        state.SetOnboard();
+        state.CmdSetOnBoard();
     }
 
     private void Update()
     {
-        inputHandler.Handle();
+        if (isLocalPlayer)
+        {
+            inputHandler.Handle();
+        }
     }
 }

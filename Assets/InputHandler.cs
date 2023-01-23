@@ -71,12 +71,12 @@ public class InputHandler : MonoBehaviour
         {
             if (player.state.isCrewActive)
             {
-                player.state.SetOffBoard();
+                player.state.CmdSetOffBoard();
             }
 
             else if (player.state.isDroneActive)
             {
-                player.state.SetOnboard();
+                player.state.CmdSetOnBoard();
             }
         }
     }

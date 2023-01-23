@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState : NetworkBehaviour
 {
     [SerializeField] private Player player;
     
@@ -25,7 +26,14 @@ public class PlayerState : MonoBehaviour
         isUserActive = true;
     }
 
-    public void SetOnboard()
+    [Command]
+    public void CmdSetOnBoard()
+    {
+        RpcSetOnboard();
+    }
+    
+    [ClientRpc]
+    public void RpcSetOnboard()
     {
         Debug.Log("Going On Board");
         isCrewActive = true;
@@ -38,8 +46,15 @@ public class PlayerState : MonoBehaviour
         player.camera.AddCameraTarget(player.crew.transform);
     }
 
+    [Command]
+    public void CmdSetOffBoard()
+    {
+        RpcSetOffBoard();
+    }
+
     // Maybe pass it the drone component it'll be using?
-    public void SetOffBoard()
+    [ClientRpc]
+    public void RpcSetOffBoard()
     {
         Debug.Log("Going Off Board");
         isDroneActive = true;
