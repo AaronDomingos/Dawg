@@ -79,5 +79,10 @@ public class InputHandler : MonoBehaviour
                 player.state.CmdSetOnBoard();
             }
         }
+
+        if (userInput.Admin.Materium.WasReleasedThisFrame())
+        {
+            player.drone.GetComponent<MateriumSpawnerTest>().StartSpawningMaterium();
+        }
     }
 }

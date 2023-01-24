@@ -56,7 +56,7 @@ public class PlayerState : NetworkBehaviour
     [ClientRpc]
     public void RpcSetOffBoard()
     {
-        Debug.Log("Going Off Board");
+        //Debug.Log("Going Off Board");
         isDroneActive = true;
         isCrewActive = false;
         

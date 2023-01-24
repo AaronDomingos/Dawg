@@ -207,6 +207,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Materium"",
+                    ""type"": ""Button"",
+                    ""id"": ""7dd92d92-48fc-4644-b8bd-75f3a8ecc6ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -218,6 +227,17 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cede295a-05dc-4480-9aa4-2e772838a31a"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Materium"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -238,6 +258,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         // Admin
         m_Admin = asset.FindActionMap("Admin", throwIfNotFound: true);
         m_Admin_Toggle = m_Admin.FindAction("Toggle", throwIfNotFound: true);
+        m_Admin_Materium = m_Admin.FindAction("Materium", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -397,11 +418,13 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Admin;
     private IAdminActions m_AdminActionsCallbackInterface;
     private readonly InputAction m_Admin_Toggle;
+    private readonly InputAction m_Admin_Materium;
     public struct AdminActions
     {
         private @UserInput m_Wrapper;
         public AdminActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Toggle => m_Wrapper.m_Admin_Toggle;
+        public InputAction @Materium => m_Wrapper.m_Admin_Materium;
         public InputActionMap Get() { return m_Wrapper.m_Admin; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -414,6 +437,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Toggle.started -= m_Wrapper.m_AdminActionsCallbackInterface.OnToggle;
                 @Toggle.performed -= m_Wrapper.m_AdminActionsCallbackInterface.OnToggle;
                 @Toggle.canceled -= m_Wrapper.m_AdminActionsCallbackInterface.OnToggle;
+                @Materium.started -= m_Wrapper.m_AdminActionsCallbackInterface.OnMaterium;
+                @Materium.performed -= m_Wrapper.m_AdminActionsCallbackInterface.OnMaterium;
+                @Materium.canceled -= m_Wrapper.m_AdminActionsCallbackInterface.OnMaterium;
             }
             m_Wrapper.m_AdminActionsCallbackInterface = instance;
             if (instance != null)
@@ -421,6 +447,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Toggle.started += instance.OnToggle;
                 @Toggle.performed += instance.OnToggle;
                 @Toggle.canceled += instance.OnToggle;
+                @Materium.started += instance.OnMaterium;
+                @Materium.performed += instance.OnMaterium;
+                @Materium.canceled += instance.OnMaterium;
             }
         }
     }
@@ -440,5 +469,6 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     public interface IAdminActions
     {
         void OnToggle(InputAction.CallbackContext context);
+        void OnMaterium(InputAction.CallbackContext context);
     }
 }

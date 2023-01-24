@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-public class MateriumSpawnerTest : NetworkBehaviour
+public class MateriumSpawnerTest : MonoBehaviour
 {
 
     [SerializeField] private GameObject materiumPrefab;
 
 
-    [Command(requiresAuthority = false)]
     private void CmdSpawnMaterium()
     {
-        GameObject newMaterium = Instantiate(materiumPrefab, transform.position, Quaternion.identity);
-        NetworkServer.Spawn(newMaterium);
+        GameObject newMaterium = GameManager.MateriumPool.ReserveInstance();
+        if (newMaterium != null)
+        {
+            newMaterium.transform.position = transform.position;
+            newMaterium.GetComponent<Materium>().Activate();
+        }
     }
 
     public void StartSpawningMaterium()
