@@ -26,6 +26,16 @@ public class PlayerState : NetworkBehaviour
         isUserActive = true;
     }
 
+    public void SetOnBoard()
+    {
+        Debug.Log("Going On Board");
+        isCrewActive = true;
+        isDroneActive = false;
+        player.camera.RemoveAllCameraTargets();
+        player.camera.AddCameraTarget(player.crew.transform);
+        CmdSetOnBoard();
+    }
+    
     [Command]
     public void CmdSetOnBoard()
     {
@@ -35,35 +45,33 @@ public class PlayerState : NetworkBehaviour
     [ClientRpc]
     public void RpcSetOnboard()
     {
-        Debug.Log("Going On Board");
-        isCrewActive = true;
-        isDroneActive = false;
-        
+        Debug.Log("Toggle Rpc Received");
         player.crew.gameObject.SetActive(true);
         player.drone.gameObject.SetActive(false);
-        
-        player.camera.RemoveAllCameraTargets();
-        player.camera.AddCameraTarget(player.crew.transform);
     }
 
+    public void SetOffBoard()
+    {
+        Debug.Log("Going Off Board");
+        isDroneActive = true;
+        isCrewActive = false;
+        player.camera.RemoveAllCameraTargets();
+        player.camera.AddCameraTarget(player.drone.transform);
+        CmdSetOffBoard();
+    }
+    
     [Command]
-    public void CmdSetOffBoard()
+    private void CmdSetOffBoard()
     {
         RpcSetOffBoard();
     }
 
     // Maybe pass it the drone component it'll be using?
     [ClientRpc]
-    public void RpcSetOffBoard()
+    private void RpcSetOffBoard()
     {
-        //Debug.Log("Going Off Board");
-        isDroneActive = true;
-        isCrewActive = false;
-        
+        Debug.Log("Toggle Rpc Received");
         player.drone.gameObject.SetActive(true);
         player.crew.gameObject.SetActive(false);
-        
-        player.camera.RemoveAllCameraTargets();
-        player.camera.AddCameraTarget(player.drone.transform);
     }
 }

@@ -7,9 +7,8 @@ public class MateriumSpawnerTest : MonoBehaviour
 {
 
     [SerializeField] private GameObject materiumPrefab;
-
-
-    private void CmdSpawnMaterium()
+    
+    private void SpawnMaterium()
     {
         GameObject newMaterium = GameManager.MateriumPool.ReserveInstance();
         if (newMaterium != null)
@@ -21,6 +20,11 @@ public class MateriumSpawnerTest : MonoBehaviour
 
     public void StartSpawningMaterium()
     {
-        InvokeRepeating("CmdSpawnMaterium", 1f, 1f);
+        InvokeRepeating("SpawnMaterium", 1f, 1f);
+    }
+
+    public void SpawnSingleMaterium()
+    {
+        SpawnMaterium();
     }
 }

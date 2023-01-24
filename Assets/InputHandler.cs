@@ -71,18 +71,19 @@ public class InputHandler : MonoBehaviour
         {
             if (player.state.isCrewActive)
             {
-                player.state.CmdSetOffBoard();
+                player.state.SetOffBoard();
             }
 
             else if (player.state.isDroneActive)
             {
-                player.state.CmdSetOnBoard();
+                player.state.SetOnBoard();
             }
         }
 
         if (userInput.Admin.Materium.WasReleasedThisFrame())
         {
-            player.drone.GetComponent<MateriumSpawnerTest>().StartSpawningMaterium();
+            GameManager.MateriumPool.spawner.SpawnSingleMaterium();
+            //player.drone.GetComponent<MateriumSpawnerTest>().StartSpawningMaterium();
         }
     }
 }

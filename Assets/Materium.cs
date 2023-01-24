@@ -27,19 +27,19 @@ public class Materium : NetworkBehaviour
     {
         movement.SetAttraction(target);
     }
-
-    [Command(requiresAuthority = false)]
-    private void CmdSelfDestruct()
-    {
-        GameManager.MateriumPool.ReturnInstance(gameObject);
-    }
-
-    [Server]
+    
     public void Deactivate()
     {
+        Debug.Log("Deactivating ClientRpcDeactivate on: " + gameObject.name);
         CancelInvoke("Deactivate");
         gameObject.SetActive(false);
-        GameManager.MateriumPool.ReturnInstance(gameObject);
+        
+        if (isServer)
+        {
+            GameManager.MateriumPool.ReturnInstance(gameObject);
+            return;
+        }
+        Debug.Log("Ignoring Deactivate Here");
     }
 
     [Server]

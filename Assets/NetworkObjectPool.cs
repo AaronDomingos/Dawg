@@ -14,16 +14,18 @@ public class NetworkObjectPool : NetworkBehaviour
     [SerializeField] private int StartingQuantity;
     [SerializeField] private int MaxQuantity;
 
-    public List<GameObject> AllObjects = new List<GameObject>();
-    public List<int> ActiveIds = new List<int>();
-    public List<int> InactiveIds = new List<int>();
+    public SyncList<GameObject> AllObjects = new SyncList<GameObject>();
+    public SyncList<int> ActiveIds = new SyncList<int>();
+    public SyncList<int> InactiveIds = new SyncList<int>();
     private int Count = 0;
+
+    public MateriumSpawnerTest spawner;
 
     private void Initialize()
     {
         for (int i = 0; i < StartingQuantity; i++)
         {
-            CreateNewInstance();
+            CmdCreateNewInstance();
         }
     }
 
@@ -31,7 +33,7 @@ public class NetworkObjectPool : NetworkBehaviour
     {
         if (InactiveIds.Count == 0)
         {
-            CreateNewInstance();
+            CmdCreateNewInstance();
             if (InactiveIds.Count == 0)
             {
                 Debug.Log("Failed to reserve: " + ObjectName);
@@ -59,10 +61,10 @@ public class NetworkObjectPool : NetworkBehaviour
         DespawnInstance(objId);
     }
     
-    [Server]
-    private void CreateNewInstance()
+    [Command(requiresAuthority = false)]
+    private void CmdCreateNewInstance()
     {
-        //Debug.Log(Count + "/" + MaxQuantity);
+        Debug.Log(Count + "/" + MaxQuantity);
         if (Count >= MaxQuantity)
         {
             Debug.Log(ObjectName + " max quantity reached");
@@ -84,6 +86,7 @@ public class NetworkObjectPool : NetworkBehaviour
     [Server]
     private void SpawnInstance(int objId)
     {
+        Debug.Log("Spawning Instance");
         ActiveIds.Add(objId);
         InactiveIds.Remove(objId);
         NetworkServer.Spawn(AllObjects[objId]);
@@ -92,7 +95,7 @@ public class NetworkObjectPool : NetworkBehaviour
     [Server]
     private void DespawnInstance(int objId)
     {
-        
+        Debug.Log("Despawning Instance");
         InactiveIds.Add(objId);
         ActiveIds.Remove(objId);
         NetworkServer.UnSpawn(AllObjects[objId]);

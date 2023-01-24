@@ -24,7 +24,7 @@ public class Player : NetworkBehaviour
     private void Start()
     {
         state.EnableUser();
-        state.CmdSetOnBoard();
+        state.SetOnBoard();
     }
 
     private void Update()
