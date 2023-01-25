@@ -26,7 +26,7 @@ public class PlayerState : NetworkBehaviour
         isUserActive = true;
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdSetOnBoard()
     {
         RpcSetOnboard();
