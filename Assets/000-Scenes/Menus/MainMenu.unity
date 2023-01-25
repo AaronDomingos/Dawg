@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &334121287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 710019044504949123, guid: 9909a8065456f4f6780f43db3baab510,
+    type: 3}
+  m_PrefabInstance: {fileID: 2076832296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &334121288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334121287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8aea0e7e97cb8345883cb2051d27fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &836363585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -525,6 +543,16 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneId
       value: 2990508617
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460964378757505945, guid: 9909a8065456f4f6780f43db3baab510,
+        type: 3}
+      propertyPath: onlineScene
+      value: Assets/000-Scenes/Menus/Lobby.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460964378757505945, guid: 9909a8065456f4f6780f43db3baab510,
+        type: 3}
+      propertyPath: offlineScene
+      value: Assets/000-Scenes/Menus/MainMenu.unity
       objectReference: {fileID: 0}
     - target: {fileID: 7460964378757505945, guid: 9909a8065456f4f6780f43db3baab510,
         type: 3}

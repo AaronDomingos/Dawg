@@ -6,12 +6,6 @@ using Mirror;
 
 public class MenuUI : MonoBehaviour
 {
-    // UI elements
-    [SerializeField] private TMPro.TMP_Text playerNameTxt;
-
-    private GameObject menuPlayer;
-    private PlayerData menuPlayerData;
-
     public void OnClickHostBtn()
     {
         NetworkManager.singleton.StartHost();

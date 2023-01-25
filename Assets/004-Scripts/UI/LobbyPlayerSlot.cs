@@ -13,18 +13,41 @@ public class LobbyPlayerSlot : NetworkBehaviour
     [SerializeField] private Toggle readyToggle;
 
     // Lobby player data attached to the slot
-    private PlayerData playerData;
+    // Value is serialized in JSON so it can be transmitted to the server
+    /* TO-DO: enable custom serialization of PlayerData over the network */
+    [SyncVar]
+    public PlayerData playerData;
 
     // Initial (placeholder) value of player name text
     private string playerNamePlaceholder;
 
-    // Getter(s) and setter(s)
-    public PlayerData LobbyPlayerData { get => playerData;
-        set
-        {
-            playerData = value;
-            UpdateView(value);
-        }
+    [SyncVar]
+    public bool isOpen = true;
+
+    [Command(requiresAuthority = false)]
+    public void CmdUpdatePlayerData(PlayerData value)
+    {
+        playerData = value;
+        RpcUpdateDataDisplay(value);
+        isOpen = false;
+    }
+
+    [Command(requiresAuthority = false)]
+    private void CmdSetOpenStatus(bool status)
+    {
+        isOpen = status;
+    }
+
+    [ClientRpc]
+    void RpcUpdateDataDisplay(PlayerData playerData)
+    {
+        UpdateDataDisplay(playerData);
+    }
+
+    void UpdateDataDisplay(PlayerData playerData)
+    {
+        playerNameTxt.text = playerData.PlayerName;
+        readyToggle.isOn = playerData.IsReady;
     }
 
     // Start is called before the first frame update
@@ -33,31 +56,25 @@ public class LobbyPlayerSlot : NetworkBehaviour
         playerNamePlaceholder = playerNameTxt.text;
     }
 
-    void UpdateView(PlayerData playerData)
+    public void Clear()
     {
-        playerNameTxt.text = playerData.Name;
-        readyToggle.isOn = playerData.IsReady;
-    }
-
-    void ClearSlot()
-    {
+        // netId 9000 should never be reached...
+        PlayerData emptyData = new PlayerData(9000, playerNamePlaceholder, false);
         // Reset struct to default value
-        playerData = new PlayerData();
-
-        playerNameTxt.text = playerNamePlaceholder;
-        readyToggle.isOn = false;
+        CmdUpdatePlayerData(emptyData);
+        CmdSetOpenStatus(true);
     }
 
-    bool IsOpen()
+    // When a new client connects...
+    public override void OnStartClient()
     {
-        // If struct is currently set to its default value...
-        if(EqualityComparer<PlayerData>.Default.Equals(playerData, default(PlayerData)))
         {
-            // ... this slot is open!
-            return true;
+            // If slot is used by another player...
+            if (!isOpen)
+            {
+                // Update its displayed data to reflect that...
+                UpdateDataDisplay(playerData);
+            }
         }
-
-        // If not, it's closed!
-        return false;
     }
 }

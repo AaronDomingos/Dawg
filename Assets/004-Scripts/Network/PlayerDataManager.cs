@@ -9,24 +9,24 @@ public class PlayerDataManager : NetworkBehaviour
     public static PlayerDataManager singleton { get; private set; }
 
     // Dictionary containing json data corresponding to each player's client ID
-    private readonly SyncDictionary<int, string> playerDataDictionary = new SyncDictionary<int, string>();
+    private readonly SyncDictionary<uint, string> playerDataDictionary = new SyncDictionary<uint, string>();
 
     [Command(requiresAuthority = false)]
-    public void DeletePlayerData(int connId)
+    public void DeletePlayerData(uint netId)
     {
-        playerDataDictionary.Remove(connId);
+        playerDataDictionary.Remove(netId);
     }
 
     [Command(requiresAuthority = false)]
-    public void CmdUpdatePlayerData(int connId, string playerDataJson)
+    public void CmdUpdatePlayerData(uint netId, PlayerData playerData)
     {
-        if (playerDataDictionary.ContainsKey(connId))
+        if (playerDataDictionary.ContainsKey(netId))
         {
-            playerDataDictionary.Remove(connId);
+            playerDataDictionary.Remove(netId);
         }
 
-        playerDataDictionary.Add(connId, playerDataJson);
-        Debug.Log("Updated player data for connId " + connId + playerDataDictionary[connId]);
+        playerDataDictionary.Add(netId, playerData.SaveToJsonString());
+        Debug.Log("Updated player data for connId " + netId + playerDataDictionary[netId]);
     }
 
     private void Awake()
@@ -39,5 +39,7 @@ public class PlayerDataManager : NetworkBehaviour
         {
             singleton = this;
         }
+
+        DontDestroyOnLoad(this);
     }
 }
