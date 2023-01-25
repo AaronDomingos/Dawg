@@ -181,9 +181,108 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Shift"",
+                    ""type"": ""Button"",
+                    ""id"": ""1fd2563a-a195-4dff-bbef-c86bd848fe56"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Toggle"",
                     ""type"": ""Button"",
                     ""id"": ""5a1d6b75-a28e-4742-911b-00a52ff46439"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index0"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba889d7a-14b7-4cea-a2dd-2d90ab387aeb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index1"",
+                    ""type"": ""Button"",
+                    ""id"": ""aca08eea-33cc-4a1d-b38f-1a1b3f0287cb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index2"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e485948-3267-42d0-9301-3ee8d6fc4d1d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index3"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f9a2fe7-c16d-46fc-9975-bc8a7a5c7ed2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index4"",
+                    ""type"": ""Button"",
+                    ""id"": ""9dfb1b95-5801-4162-a3d8-b87137e7aa60"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index5"",
+                    ""type"": ""Button"",
+                    ""id"": ""96a8b88a-5003-478f-a544-91142a31ec5e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index6"",
+                    ""type"": ""Button"",
+                    ""id"": ""d9a69be0-8c0c-4f28-a23d-c42a0b6d05c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index7"",
+                    ""type"": ""Button"",
+                    ""id"": ""18ea9b42-2f88-43e1-9e06-1922df9f3d7d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index8"",
+                    ""type"": ""Button"",
+                    ""id"": ""43e232e3-674d-4720-9a84-69c71fe93403"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Index9"",
+                    ""type"": ""Button"",
+                    ""id"": ""669370e8-9d3d-4d5b-8ade-66d6049ddf77"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -210,6 +309,127 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83a7b5bb-009a-4c89-8524-21a5a13d1f7c"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fca5dfd-d768-48cd-8175-a88c65e72500"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a56d96c6-3785-482b-b6f4-d8a708e6f19f"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8bebf65-b369-4944-a59a-33fc545ac70b"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a68dbc64-c387-4581-a2e1-b271cbf23579"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f239ac64-6cf4-4b77-8293-c2867564f72f"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8e576dd-d8a8-4a6e-ab77-a4dec2a659d8"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6e4d844-b267-4ddd-bd46-ac43007d9e0c"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c280e252-ec33-47dd-bc9b-bc1d46aa622f"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index9"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7624771a-d7e3-4fa9-9f67-8b7ed381b1af"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Index0"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fa39c67-cc18-453f-ac2c-780ba4fa7623"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -275,7 +495,18 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         // User
         m_User = asset.FindActionMap("User", throwIfNotFound: true);
         m_User_Quit = m_User.FindAction("Quit", throwIfNotFound: true);
+        m_User_Shift = m_User.FindAction("Shift", throwIfNotFound: true);
         m_User_Toggle = m_User.FindAction("Toggle", throwIfNotFound: true);
+        m_User_Index0 = m_User.FindAction("Index0", throwIfNotFound: true);
+        m_User_Index1 = m_User.FindAction("Index1", throwIfNotFound: true);
+        m_User_Index2 = m_User.FindAction("Index2", throwIfNotFound: true);
+        m_User_Index3 = m_User.FindAction("Index3", throwIfNotFound: true);
+        m_User_Index4 = m_User.FindAction("Index4", throwIfNotFound: true);
+        m_User_Index5 = m_User.FindAction("Index5", throwIfNotFound: true);
+        m_User_Index6 = m_User.FindAction("Index6", throwIfNotFound: true);
+        m_User_Index7 = m_User.FindAction("Index7", throwIfNotFound: true);
+        m_User_Index8 = m_User.FindAction("Index8", throwIfNotFound: true);
+        m_User_Index9 = m_User.FindAction("Index9", throwIfNotFound: true);
         // Admin
         m_Admin = asset.FindActionMap("Admin", throwIfNotFound: true);
         m_Admin_Toggle = m_Admin.FindAction("Toggle", throwIfNotFound: true);
@@ -406,13 +637,35 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_User;
     private IUserActions m_UserActionsCallbackInterface;
     private readonly InputAction m_User_Quit;
+    private readonly InputAction m_User_Shift;
     private readonly InputAction m_User_Toggle;
+    private readonly InputAction m_User_Index0;
+    private readonly InputAction m_User_Index1;
+    private readonly InputAction m_User_Index2;
+    private readonly InputAction m_User_Index3;
+    private readonly InputAction m_User_Index4;
+    private readonly InputAction m_User_Index5;
+    private readonly InputAction m_User_Index6;
+    private readonly InputAction m_User_Index7;
+    private readonly InputAction m_User_Index8;
+    private readonly InputAction m_User_Index9;
     public struct UserActions
     {
         private @UserInput m_Wrapper;
         public UserActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Quit => m_Wrapper.m_User_Quit;
+        public InputAction @Shift => m_Wrapper.m_User_Shift;
         public InputAction @Toggle => m_Wrapper.m_User_Toggle;
+        public InputAction @Index0 => m_Wrapper.m_User_Index0;
+        public InputAction @Index1 => m_Wrapper.m_User_Index1;
+        public InputAction @Index2 => m_Wrapper.m_User_Index2;
+        public InputAction @Index3 => m_Wrapper.m_User_Index3;
+        public InputAction @Index4 => m_Wrapper.m_User_Index4;
+        public InputAction @Index5 => m_Wrapper.m_User_Index5;
+        public InputAction @Index6 => m_Wrapper.m_User_Index6;
+        public InputAction @Index7 => m_Wrapper.m_User_Index7;
+        public InputAction @Index8 => m_Wrapper.m_User_Index8;
+        public InputAction @Index9 => m_Wrapper.m_User_Index9;
         public InputActionMap Get() { return m_Wrapper.m_User; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -425,9 +678,42 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Quit.started -= m_Wrapper.m_UserActionsCallbackInterface.OnQuit;
                 @Quit.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnQuit;
                 @Quit.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnQuit;
+                @Shift.started -= m_Wrapper.m_UserActionsCallbackInterface.OnShift;
+                @Shift.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnShift;
+                @Shift.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnShift;
                 @Toggle.started -= m_Wrapper.m_UserActionsCallbackInterface.OnToggle;
                 @Toggle.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnToggle;
                 @Toggle.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnToggle;
+                @Index0.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex0;
+                @Index0.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex0;
+                @Index0.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex0;
+                @Index1.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex1;
+                @Index1.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex1;
+                @Index1.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex1;
+                @Index2.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex2;
+                @Index2.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex2;
+                @Index2.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex2;
+                @Index3.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex3;
+                @Index3.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex3;
+                @Index3.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex3;
+                @Index4.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex4;
+                @Index4.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex4;
+                @Index4.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex4;
+                @Index5.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex5;
+                @Index5.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex5;
+                @Index5.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex5;
+                @Index6.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex6;
+                @Index6.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex6;
+                @Index6.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex6;
+                @Index7.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex7;
+                @Index7.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex7;
+                @Index7.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex7;
+                @Index8.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex8;
+                @Index8.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex8;
+                @Index8.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex8;
+                @Index9.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex9;
+                @Index9.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex9;
+                @Index9.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex9;
             }
             m_Wrapper.m_UserActionsCallbackInterface = instance;
             if (instance != null)
@@ -435,9 +721,42 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
+                @Shift.started += instance.OnShift;
+                @Shift.performed += instance.OnShift;
+                @Shift.canceled += instance.OnShift;
                 @Toggle.started += instance.OnToggle;
                 @Toggle.performed += instance.OnToggle;
                 @Toggle.canceled += instance.OnToggle;
+                @Index0.started += instance.OnIndex0;
+                @Index0.performed += instance.OnIndex0;
+                @Index0.canceled += instance.OnIndex0;
+                @Index1.started += instance.OnIndex1;
+                @Index1.performed += instance.OnIndex1;
+                @Index1.canceled += instance.OnIndex1;
+                @Index2.started += instance.OnIndex2;
+                @Index2.performed += instance.OnIndex2;
+                @Index2.canceled += instance.OnIndex2;
+                @Index3.started += instance.OnIndex3;
+                @Index3.performed += instance.OnIndex3;
+                @Index3.canceled += instance.OnIndex3;
+                @Index4.started += instance.OnIndex4;
+                @Index4.performed += instance.OnIndex4;
+                @Index4.canceled += instance.OnIndex4;
+                @Index5.started += instance.OnIndex5;
+                @Index5.performed += instance.OnIndex5;
+                @Index5.canceled += instance.OnIndex5;
+                @Index6.started += instance.OnIndex6;
+                @Index6.performed += instance.OnIndex6;
+                @Index6.canceled += instance.OnIndex6;
+                @Index7.started += instance.OnIndex7;
+                @Index7.performed += instance.OnIndex7;
+                @Index7.canceled += instance.OnIndex7;
+                @Index8.started += instance.OnIndex8;
+                @Index8.performed += instance.OnIndex8;
+                @Index8.canceled += instance.OnIndex8;
+                @Index9.started += instance.OnIndex9;
+                @Index9.performed += instance.OnIndex9;
+                @Index9.canceled += instance.OnIndex9;
             }
         }
     }
@@ -494,7 +813,18 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     public interface IUserActions
     {
         void OnQuit(InputAction.CallbackContext context);
+        void OnShift(InputAction.CallbackContext context);
         void OnToggle(InputAction.CallbackContext context);
+        void OnIndex0(InputAction.CallbackContext context);
+        void OnIndex1(InputAction.CallbackContext context);
+        void OnIndex2(InputAction.CallbackContext context);
+        void OnIndex3(InputAction.CallbackContext context);
+        void OnIndex4(InputAction.CallbackContext context);
+        void OnIndex5(InputAction.CallbackContext context);
+        void OnIndex6(InputAction.CallbackContext context);
+        void OnIndex7(InputAction.CallbackContext context);
+        void OnIndex8(InputAction.CallbackContext context);
+        void OnIndex9(InputAction.CallbackContext context);
     }
     public interface IAdminActions
     {
