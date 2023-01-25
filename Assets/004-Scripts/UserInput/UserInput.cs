@@ -107,6 +107,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""7281e533-d679-42ca-a4f9-aa5bf9b90e08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -164,6 +173,17 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b279d69d-3da5-4b5e-a7be-0b7592b3f722"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -492,6 +512,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         // Crew
         m_Crew = asset.FindActionMap("Crew", throwIfNotFound: true);
         m_Crew_Walk = m_Crew.FindAction("Walk", throwIfNotFound: true);
+        m_Crew_Interact = m_Crew.FindAction("Interact", throwIfNotFound: true);
         // User
         m_User = asset.FindActionMap("User", throwIfNotFound: true);
         m_User_Quit = m_User.FindAction("Quit", throwIfNotFound: true);
@@ -604,11 +625,13 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Crew;
     private ICrewActions m_CrewActionsCallbackInterface;
     private readonly InputAction m_Crew_Walk;
+    private readonly InputAction m_Crew_Interact;
     public struct CrewActions
     {
         private @UserInput m_Wrapper;
         public CrewActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Crew_Walk;
+        public InputAction @Interact => m_Wrapper.m_Crew_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Crew; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -621,6 +644,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Walk.started -= m_Wrapper.m_CrewActionsCallbackInterface.OnWalk;
                 @Walk.performed -= m_Wrapper.m_CrewActionsCallbackInterface.OnWalk;
                 @Walk.canceled -= m_Wrapper.m_CrewActionsCallbackInterface.OnWalk;
+                @Interact.started -= m_Wrapper.m_CrewActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_CrewActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_CrewActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_CrewActionsCallbackInterface = instance;
             if (instance != null)
@@ -628,6 +654,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Walk.started += instance.OnWalk;
                 @Walk.performed += instance.OnWalk;
                 @Walk.canceled += instance.OnWalk;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -809,6 +838,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     public interface ICrewActions
     {
         void OnWalk(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUserActions
     {
