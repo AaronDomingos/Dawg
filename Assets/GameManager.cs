@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public static GameObject MateriumContainer;
-    public static NetworkObjectPool MateriumPool;
     public static GameObject AsteroidContainer;
     public static GameObject WarpGateContainer;
 
@@ -35,7 +34,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         MateriumContainer = GameObject.Find("MateriumContainer");
-        MateriumPool = MateriumContainer.GetComponent<NetworkObjectPool>();
         
         AsteroidContainer = GameObject.Find("AsteroidContainer");
         //AsteroidController = AsteroidContainer.GetComponent<ContainerController>();

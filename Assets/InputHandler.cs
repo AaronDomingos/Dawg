@@ -28,62 +28,28 @@ public class InputHandler : MonoBehaviour
     public void Handle()
     {
         HandleAdminInputs();
-        
-        if (player.state.isUserActive)
-        {
-            HandleUserInputs();   
-        }
-
-        if (player.state.isCrewActive)
-        {
-            HandleCrewInputs();
-        }
-
-        else if (player.state.isDroneActive)
-        {
-            HandleDroneInputs();
-        }
     }
 
     private void HandleUserInputs()
     {
-        if (userInput.User.Quit.WasReleasedThisFrame())
+        if (userInput.User.Toggle.WasReleasedThisFrame())
         {
-            Debug.Log("Exit Program");
+            
         }
     }
 
     private void HandleCrewInputs()
     {
-        player.crew.movement.SetDirection(
-            userInput.Crew.Walk.ReadValue<Vector2>());
+        
     }
 
     private void HandleDroneInputs()
     {
-        player.drone.HandleThrust(
-            userInput.Drone.Thrust.ReadValue<Vector2>());
+        
     }
 
     private void HandleAdminInputs()
     {
-        if (userInput.Admin.Toggle.WasReleasedThisFrame())
-        {
-            if (player.state.isCrewActive)
-            {
-                player.state.SetOffBoard();
-            }
-
-            else if (player.state.isDroneActive)
-            {
-                player.state.SetOnBoard();
-            }
-        }
-
-        if (userInput.Admin.Materium.WasReleasedThisFrame())
-        {
-            GameManager.MateriumPool.spawner.SpawnSingleMaterium();
-            //player.drone.GetComponent<MateriumSpawnerTest>().StartSpawningMaterium();
-        }
+        
     }
 }

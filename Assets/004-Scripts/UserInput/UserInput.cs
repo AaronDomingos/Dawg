@@ -179,6 +179,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a1d6b75-a28e-4742-911b-00a52ff46439"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -190,6 +199,17 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a8b1b90-f1f1-44bb-a885-59e945f71a13"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -255,6 +275,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         // User
         m_User = asset.FindActionMap("User", throwIfNotFound: true);
         m_User_Quit = m_User.FindAction("Quit", throwIfNotFound: true);
+        m_User_Toggle = m_User.FindAction("Toggle", throwIfNotFound: true);
         // Admin
         m_Admin = asset.FindActionMap("Admin", throwIfNotFound: true);
         m_Admin_Toggle = m_Admin.FindAction("Toggle", throwIfNotFound: true);
@@ -385,11 +406,13 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_User;
     private IUserActions m_UserActionsCallbackInterface;
     private readonly InputAction m_User_Quit;
+    private readonly InputAction m_User_Toggle;
     public struct UserActions
     {
         private @UserInput m_Wrapper;
         public UserActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Quit => m_Wrapper.m_User_Quit;
+        public InputAction @Toggle => m_Wrapper.m_User_Toggle;
         public InputActionMap Get() { return m_Wrapper.m_User; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -402,6 +425,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Quit.started -= m_Wrapper.m_UserActionsCallbackInterface.OnQuit;
                 @Quit.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnQuit;
                 @Quit.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnQuit;
+                @Toggle.started -= m_Wrapper.m_UserActionsCallbackInterface.OnToggle;
+                @Toggle.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnToggle;
+                @Toggle.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnToggle;
             }
             m_Wrapper.m_UserActionsCallbackInterface = instance;
             if (instance != null)
@@ -409,6 +435,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
+                @Toggle.started += instance.OnToggle;
+                @Toggle.performed += instance.OnToggle;
+                @Toggle.canceled += instance.OnToggle;
             }
         }
     }
@@ -465,6 +494,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     public interface IUserActions
     {
         void OnQuit(InputAction.CallbackContext context);
+        void OnToggle(InputAction.CallbackContext context);
     }
     public interface IAdminActions
     {
