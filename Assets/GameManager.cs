@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public static Player Player;
+
     public static GameObject MateriumContainer;
     public static GameObject AsteroidContainer;
     public static GameObject WarpGateContainer;
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Player = GameObject.Find("Player").GetComponent<Player>();
+        
         MateriumContainer = GameObject.Find("MateriumContainer");
         
         AsteroidContainer = GameObject.Find("AsteroidContainer");

@@ -12,6 +12,9 @@ public class Turret : MonoBehaviour
     [SerializeField] private Canvas WeaponSelectionMenu;
     [SerializeField] private IdDetector TurretDetection;
 
+    [SerializeField] private Transform RotatingParent;
+    [SerializeField] private Transform StaticParent;
+    
     [SerializeField] private GameObject BulletWeaponObject;
     [SerializeField] private BulletWeapon BulletWeaponScript;
     [SerializeField] private GameObject LaserWeaponObject;
@@ -35,7 +38,7 @@ public class Turret : MonoBehaviour
         Laser = 2,
         Rocket = 3
     }
-    
+
     private void FixedUpdate()
     {
         if (isActivated)
@@ -63,6 +66,9 @@ public class Turret : MonoBehaviour
         {
             GameObject closestTarget = Proximity.NearestGameObject(
                 gameObject, TurretDetection.DetectedObjects);
+
+            RotatingParent.rotation = Orientation.QuarternionFromAToB(
+                RotatingParent, closestTarget.transform.position, 5f);
         }
         
         
@@ -73,6 +79,7 @@ public class Turret : MonoBehaviour
 
     public void OnInteract()
     {
+        RotatingParent.rotation = StaticParent.rotation;
         Activator = interactable.ActiveInteractors.Last();
         SetCrewMovement(Activator, false);
         
@@ -85,6 +92,7 @@ public class Turret : MonoBehaviour
 
     public void OnCancel()
     {
+        RotatingParent.rotation = StaticParent.rotation;
         Activator.GetComponent<CrewControl>().sprite.enabled = true;
         FakeCrew.SetActive(false);
         
@@ -135,25 +143,25 @@ public class Turret : MonoBehaviour
     private void OpenMenu()
     {
         WeaponSelectionMenu.gameObject.SetActive(true);
-        player.CanToggle = false;
+        GameManager.Player.CanToggle = false;
     }
 
     private void CloseMenu()
     {
         WeaponSelectionMenu.gameObject.SetActive(false);
-        player.CanToggle = true;
+        GameManager.Player.CanToggle = true;
     }
 
     private void EnableCameraTarget()
     {
-        player.proCamera.AddCameraTarget(CameraTarget);
-        player.TargetZoom = 10f;
+        GameManager.Player.proCamera.AddCameraTarget(CameraTarget);
+        GameManager.Player.TargetZoom = 10f;
     }
 
     private void DisableCameraTarget()
     {
-        player.proCamera.RemoveCameraTarget(CameraTarget);
-        player.TargetZoom = player.CrewZoom;
+        GameManager.Player.proCamera.RemoveCameraTarget(CameraTarget);
+        GameManager.Player.TargetZoom = GameManager.Player.CrewZoom;
     }
 
     private void SetCrewMovement(GameObject crew, bool canMove)
