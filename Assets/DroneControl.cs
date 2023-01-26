@@ -6,8 +6,11 @@ using UnityEngine;
 public class DroneControl : MonoBehaviour
 {
     [SerializeField] private DroneInputHandler input;
-    [SerializeField] private float Speed = .25f;
     
+    public IdDetector interactableDetector;
+    public Interactable currentInteraction;
+    public DroneMovement droneMovement;
+
     private void Update()
     {
         input.Handle();
@@ -15,6 +18,6 @@ public class DroneControl : MonoBehaviour
     
     public void ApplyThrust(Vector3 direction)
     {
-        transform.position += direction * Speed;
+        droneMovement.SetDirection(direction);
     }
 }

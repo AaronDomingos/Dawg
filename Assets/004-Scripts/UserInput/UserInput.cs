@@ -35,6 +35,24 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""a826e5ca-bd56-45c7-be57-1653ed3464df"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""deb3833a-b057-4317-9799-e3af3730bb76"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -92,6 +110,28 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""action"": ""Thrust"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54172d90-de96-43c8-b736-a74e63e9467a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7aa01e0-0135-410a-b94c-96621a9a9db4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -112,6 +152,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""7281e533-d679-42ca-a4f9-aa5bf9b90e08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""f344bddf-cdeb-4dcf-a74f-9b6a94b67e8f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -182,6 +231,17 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2c9cde6-fdc8-4764-a6d4-d11459d61c58"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -509,10 +569,13 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         // Drone
         m_Drone = asset.FindActionMap("Drone", throwIfNotFound: true);
         m_Drone_Thrust = m_Drone.FindAction("Thrust", throwIfNotFound: true);
+        m_Drone_Interact = m_Drone.FindAction("Interact", throwIfNotFound: true);
+        m_Drone_Cancel = m_Drone.FindAction("Cancel", throwIfNotFound: true);
         // Crew
         m_Crew = asset.FindActionMap("Crew", throwIfNotFound: true);
         m_Crew_Walk = m_Crew.FindAction("Walk", throwIfNotFound: true);
         m_Crew_Interact = m_Crew.FindAction("Interact", throwIfNotFound: true);
+        m_Crew_Cancel = m_Crew.FindAction("Cancel", throwIfNotFound: true);
         // User
         m_User = asset.FindActionMap("User", throwIfNotFound: true);
         m_User_Quit = m_User.FindAction("Quit", throwIfNotFound: true);
@@ -592,11 +655,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Drone;
     private IDroneActions m_DroneActionsCallbackInterface;
     private readonly InputAction m_Drone_Thrust;
+    private readonly InputAction m_Drone_Interact;
+    private readonly InputAction m_Drone_Cancel;
     public struct DroneActions
     {
         private @UserInput m_Wrapper;
         public DroneActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Thrust => m_Wrapper.m_Drone_Thrust;
+        public InputAction @Interact => m_Wrapper.m_Drone_Interact;
+        public InputAction @Cancel => m_Wrapper.m_Drone_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_Drone; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -609,6 +676,12 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Thrust.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnThrust;
                 @Thrust.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnThrust;
                 @Thrust.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnThrust;
+                @Interact.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnInteract;
+                @Cancel.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_DroneActionsCallbackInterface = instance;
             if (instance != null)
@@ -616,6 +689,12 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Thrust.started += instance.OnThrust;
                 @Thrust.performed += instance.OnThrust;
                 @Thrust.canceled += instance.OnThrust;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -626,12 +705,14 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private ICrewActions m_CrewActionsCallbackInterface;
     private readonly InputAction m_Crew_Walk;
     private readonly InputAction m_Crew_Interact;
+    private readonly InputAction m_Crew_Cancel;
     public struct CrewActions
     {
         private @UserInput m_Wrapper;
         public CrewActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Crew_Walk;
         public InputAction @Interact => m_Wrapper.m_Crew_Interact;
+        public InputAction @Cancel => m_Wrapper.m_Crew_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_Crew; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -647,6 +728,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_CrewActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_CrewActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_CrewActionsCallbackInterface.OnInteract;
+                @Cancel.started -= m_Wrapper.m_CrewActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_CrewActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_CrewActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_CrewActionsCallbackInterface = instance;
             if (instance != null)
@@ -657,6 +741,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -834,11 +921,14 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     public interface IDroneActions
     {
         void OnThrust(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
     public interface ICrewActions
     {
         void OnWalk(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
     public interface IUserActions
     {

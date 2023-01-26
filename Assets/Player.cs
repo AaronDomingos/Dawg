@@ -3,13 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Com.LuisPedroFonseca.ProCamera2D;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerInputHandler input;
 
-    public ProCamera2D camera;
+    public Camera camera;
+    public ProCamera2D proCamera;
+    private float TargetZoom = 5f;
+    private float ZoomSpeed = 5f;
 
     private int AvailableCount = 0;
     [SerializeField] private int MaxPlayables = 10;
@@ -35,6 +39,23 @@ public class Player : MonoBehaviour
     private void Update()
     {
         input.Handle();
+        HandleZoom();
+    }
+
+    private void HandleZoom()
+    {
+        if (Mathf.Abs(camera.orthographicSize - TargetZoom) < .5f)
+        {
+            camera.orthographicSize = TargetZoom;
+        }
+        else if (camera.orthographicSize > TargetZoom)
+        {
+            camera.orthographicSize -= ZoomSpeed * Time.deltaTime;
+        }
+        else if (camera.orthographicSize < TargetZoom)
+        {
+            camera.orthographicSize += ZoomSpeed * Time.deltaTime;
+        }
     }
 
     public bool hasEmptyPlayables()
@@ -51,6 +72,19 @@ public class Player : MonoBehaviour
         return playablesCount < MaxPlayables;
     }
 
+    public int FirstAvailableIndex()
+    {
+        for (int i = 0; i < AvailablePlayables.Length; i++)
+        {
+            if (AvailablePlayables[i] == null)
+            {
+                return i;
+            }
+        }
+        Debug.Log("Could not find first available index");
+        return -1;
+    }
+    
     public void AddPlayable(GameObject newPlayable)
     {
         if (newPlayable.GetComponent<InputHandler>() == null)
@@ -101,8 +135,18 @@ public class Player : MonoBehaviour
         ActivePlayable.GetComponent<InputHandler>().enabled = true;
         ActivePlayable.name += "[Active]";
         
-        camera.RemoveAllCameraTargets();
-        camera.AddCameraTarget(ActivePlayable.transform);
+        proCamera.RemoveAllCameraTargets();
+        proCamera.AddCameraTarget(ActivePlayable.transform);
+
+        Identity identity = ActivePlayable.GetComponent<Identity>();
+        if (identity.TagsKnownAs.Contains(Identification.Tags.Crew))
+        {
+            TargetZoom = 6;
+        }
+        if (identity.TagsKnownAs.Contains(Identification.Tags.Drone))
+        {
+            TargetZoom = 15;
+        }
         //Debug.Log("ActivePlayer has been set to: " + ActivePlayable.name);
     }
 
@@ -167,5 +211,23 @@ public class Player : MonoBehaviour
             return;
         }
         Debug.Log("Could not SetActivePlayableIndex to: " + index);
+    }
+
+    public void ReplaceOldWithNew(GameObject oldPlayable, GameObject newPlayable)
+    {
+        if (AvailablePlayables.Contains(oldPlayable))
+        {
+            int index = Array.IndexOf(AvailablePlayables, oldPlayable);
+            if (newPlayable.TryGetComponent(out InputHandler inputHandler))
+            {
+                Destroy(oldPlayable);
+                newPlayable.name = inputHandler.Name + ":" + index;
+                newPlayable.transform.SetParent(transform);
+                AvailablePlayables[index] = newPlayable;
+                SetActivePlayer(index);
+                return;
+            }
+        }
+        Debug.Log("Replacement Failed");
     }
 }

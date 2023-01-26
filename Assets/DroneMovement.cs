@@ -1,18 +1,61 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DroneMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float RotateSpeed = 300f;
+    [SerializeField] private float MinimumSpeed = .001f;
+    [SerializeField] private float MaximumSpeed = .1f;
+    [SerializeField] private float AccelerationRate = .005f;
+    [SerializeField] private float DecelerationRate = .99f;
+    
+    private Vector3 Direction = Vector3.zero;
+    private Vector3 Momentum = Vector3.zero;
+
+    private void FixedUpdate()
     {
-        
+        HandleMomentum();
+        HandleRotation();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void HandleMomentum()
     {
-        
+        Momentum = Vector3.ClampMagnitude(
+            Momentum + (Direction * AccelerationRate), MaximumSpeed);
+
+        transform.position += Momentum * Time.fixedDeltaTime;
+        if (Momentum != Vector3.zero)
+        {
+            transform.position += Momentum;
+            Momentum *= DecelerationRate;
+            if (Momentum.x < MinimumSpeed && Momentum.x > -MinimumSpeed &&
+                Momentum.y < MinimumSpeed && Momentum.y > -MinimumSpeed)
+            {
+                Momentum = Vector3.zero;
+            }
+        }
+    }
+
+    private void HandleRotation()
+    {
+        if (Direction != Vector3.zero && Momentum != Vector3.zero)
+        {
+            Quaternion toRotate = Quaternion.LookRotation(
+                Vector3.forward, Momentum);
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation, toRotate, RotateSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    public void SetDirection(Vector3 direction)
+    {
+        Direction = direction.normalized;
+    }
+
+    public void SetMomentum(Vector3 direction, float power)
+    {
+        Momentum = direction * power;
     }
 }
