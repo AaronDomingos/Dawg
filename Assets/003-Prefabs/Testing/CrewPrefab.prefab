@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -2590078675238523319}
   - component: {fileID: -3040782717021946130}
   - component: {fileID: -4522452944014685370}
+  - component: {fileID: -6776138924489593269}
   m_Layer: 0
   m_Name: CrewPrefab
   m_TagString: Untagged
@@ -102,9 +103,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 6124248068628155860}
+  sprite: {fileID: 5479678095852904665}
   interactableDetector: {fileID: 6810632830235394797}
   currentInteraction: {fileID: 0}
-  Speed: 0.02
+  crewMovement: {fileID: -6776138924489593269}
 --- !u!114 &6124248068628155860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +170,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TagsKnownAs: 0000000001000000
+--- !u!114 &-6776138924489593269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5479678095852904664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fedf11c30e21c4178b0b8232a22252e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 10
+  CanMove: 1
+  Direction: {x: 0, y: 0, z: 0}
 --- !u!1001 &1412330575448469370
 PrefabInstance:
   m_ObjectHideFlags: 0

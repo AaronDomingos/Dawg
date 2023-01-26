@@ -12,7 +12,10 @@ public class Player : MonoBehaviour
 
     public Camera camera;
     public ProCamera2D proCamera;
-    private float TargetZoom = 5f;
+
+    public float CrewZoom = 6;
+    public float DroneZoom = 15;
+    public float TargetZoom = 5f;
     private float ZoomSpeed = 5f;
 
     private int AvailableCount = 0;
@@ -23,6 +26,8 @@ public class Player : MonoBehaviour
         {null, null, null, null, null, null, null, null, null, null};
 
     [SerializeField] private List<GameObject> InitialPlayables = new List<GameObject>();
+
+    public bool CanToggle = true;
 
     private void Start()
     {
@@ -141,11 +146,11 @@ public class Player : MonoBehaviour
         Identity identity = ActivePlayable.GetComponent<Identity>();
         if (identity.TagsKnownAs.Contains(Identification.Tags.Crew))
         {
-            TargetZoom = 6;
+            TargetZoom = CrewZoom;
         }
         if (identity.TagsKnownAs.Contains(Identification.Tags.Drone))
         {
-            TargetZoom = 15;
+            TargetZoom = DroneZoom;
         }
         //Debug.Log("ActivePlayer has been set to: " + ActivePlayable.name);
     }
