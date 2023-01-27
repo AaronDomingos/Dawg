@@ -52,7 +52,7 @@ MonoBehaviour:
   m_DistanceBetweenSpawns: 0.03
   m_DistanceCorrection: 1
   m_UseSizeModifier: 1
-  m_UsePositionModifier: 0
+  m_UsePositionModifier: 1
   m_TrailSizeX:
     serializedVersion: 2
     m_Curve:
@@ -105,47 +105,47 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.087135315
-      value: 0.88575363
-      inSlope: 0.12602045
-      outSlope: 0.12602045
-      tangentMode: 34
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.016601562
-      value: 0.8988266
-      inSlope: 0.12602045
-      outSlope: 0.12602045
-      tangentMode: 34
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
-    m_PostInfinity: 0
+    m_PostInfinity: 2
     m_RotationOrder: 4
   m_TrailPositionY:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.012550354
-      value: 0.8539543
-      inSlope: 0.25281125
-      outSlope: 0.25281125
-      tangentMode: 34
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.08786011
-      value: 0.87299347
-      inSlope: 0.25281125
-      outSlope: 0.25281125
-      tangentMode: 34
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
-    m_PostInfinity: 0
+    m_PostInfinity: 2
     m_RotationOrder: 4

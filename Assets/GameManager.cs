@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
     public static GameObject BeetleContainer;
 
     public static GameObject BulletContainer;
+    public static ObjectPool BulletPool;
     public static GameObject LaserContainer;
+    public static ObjectPool LaserPool;
     public static GameObject RocketContainer;
 
     private void Awake()
@@ -51,8 +53,10 @@ public class GameManager : MonoBehaviour
         BeetleContainer = GameObject.Find("BeetleContainer");
 
         BulletContainer = GameObject.Find("BulletContainer");
+        BulletPool = BulletContainer.GetComponent<ObjectPool>();
 
         LaserContainer = GameObject.Find("LaserContainer");
+        LaserPool = LaserContainer.GetComponent<ObjectPool>();
         
         RocketContainer = GameObject.Find("RocketContainer");
     }

@@ -33,7 +33,7 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 24248
+    atime1: 47224
     atime2: 65535
     atime3: 0
     atime4: 0
@@ -44,13 +44,13 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 3
   m_TrailElementDurationCondition: 1
-  m_TrailMaxLength: 80
-  m_TrailDuration: 0.5
+  m_TrailMaxLength: 100
+  m_TrailDuration: 10
   m_TrailElementSpawnCondition: 2
-  m_TimeBetweenSpawns: 0
+  m_TimeBetweenSpawns: 0.5
   m_FramesBetweenSpawns: 0
-  m_DistanceBetweenSpawns: 0.03
-  m_DistanceCorrection: 1
+  m_DistanceBetweenSpawns: 1
+  m_DistanceCorrection: 0
   m_UseSizeModifier: 1
   m_UsePositionModifier: 0
   m_TrailSizeX:

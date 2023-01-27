@@ -25,11 +25,15 @@ public class Turret : MonoBehaviour
     [SerializeField] private GameObject FakeCrew;
     [SerializeField] private Transform CameraTarget;
     
+    [SerializeField] private float RotationSpeed = 5f;
+    [SerializeField] private float RotateDirection = .25f;
+    
     private bool inMenu = false;
     private bool isActivated = false;
     private GameObject Activator = null;
     private WeaponType ActiveWeapon = WeaponType.None;
 
+    public float ZRot;
 
     private enum WeaponType
     {
@@ -68,13 +72,26 @@ public class Turret : MonoBehaviour
                 gameObject, TurretDetection.DetectedObjects);
 
             RotatingParent.rotation = Orientation.QuarternionFromAToB(
-                RotatingParent, closestTarget.transform.position, 5f);
+                RotatingParent, closestTarget.transform.position, RotationSpeed);
+
+            if (ActiveWeapon == WeaponType.Laser)
+            {
+                weapon.TryFire(RotatingParent.position + RotatingParent.up * 100);
+            }
+            else
+            {
+                weapon.TryFire(Orientation.DirectionToVector(RotatingParent.position, RotatingParent.up * 100));
+                //weapon.TryFire(Proximity.DirectionToObject(RotatingParent.gameObject, closestTarget));
+            }
         }
-        
-        
-        
-        
-        
+
+        else
+        {
+            if (ActiveWeapon == WeaponType.Laser)
+            {
+                LaserWeaponScript.DeactivateLaser();
+            }
+        }
     }
 
     public void OnInteract()

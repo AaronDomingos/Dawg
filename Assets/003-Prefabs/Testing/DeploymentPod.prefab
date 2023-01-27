@@ -347,6 +347,11 @@ PrefabInstance:
       propertyPath: TagsToDetect.Array.data[2]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900457, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4a86df371674671a6cda61e5c753d6, type: 3}
 --- !u!4 &2840910449755017320 stripped
