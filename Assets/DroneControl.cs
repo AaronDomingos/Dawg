@@ -6,6 +6,8 @@ using UnityEngine;
 public class DroneControl : MonoBehaviour
 {
     [SerializeField] private DroneInputHandler input;
+
+    [SerializeField] private GameObject Pilot;
     
     public IdDetector interactableDetector;
     public Interactable currentInteraction;
@@ -19,5 +21,25 @@ public class DroneControl : MonoBehaviour
     public void ApplyThrust(Vector3 direction)
     {
         droneMovement.SetDirection(direction);
+    }
+
+    public virtual void TryPrimaryWeapon()
+    {
+        Debug.Log("Trying to use primary weapon");
+    }
+
+    public virtual void TrySpecialAbility()
+    {
+        Debug.Log("Trying special ability");
+    }
+
+    public virtual void ActivateAutoPilot()
+    {
+        Debug.Log("Activating auto pilot");
+    }
+
+    public virtual void DeactivateAutoPilot()
+    {
+        Debug.Log("Deactivating auto pilot");
     }
 }

@@ -53,6 +53,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PrimaryWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb62536c-69ee-48fd-a69a-194bd0a71690"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -130,6 +139,17 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35d88fc2-b31e-47ea-9430-85d7def7b8d5"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrimaryWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -571,6 +591,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         m_Drone_Thrust = m_Drone.FindAction("Thrust", throwIfNotFound: true);
         m_Drone_Interact = m_Drone.FindAction("Interact", throwIfNotFound: true);
         m_Drone_Cancel = m_Drone.FindAction("Cancel", throwIfNotFound: true);
+        m_Drone_PrimaryWeapon = m_Drone.FindAction("PrimaryWeapon", throwIfNotFound: true);
         // Crew
         m_Crew = asset.FindActionMap("Crew", throwIfNotFound: true);
         m_Crew_Walk = m_Crew.FindAction("Walk", throwIfNotFound: true);
@@ -657,6 +678,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Drone_Thrust;
     private readonly InputAction m_Drone_Interact;
     private readonly InputAction m_Drone_Cancel;
+    private readonly InputAction m_Drone_PrimaryWeapon;
     public struct DroneActions
     {
         private @UserInput m_Wrapper;
@@ -664,6 +686,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         public InputAction @Thrust => m_Wrapper.m_Drone_Thrust;
         public InputAction @Interact => m_Wrapper.m_Drone_Interact;
         public InputAction @Cancel => m_Wrapper.m_Drone_Cancel;
+        public InputAction @PrimaryWeapon => m_Wrapper.m_Drone_PrimaryWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Drone; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -682,6 +705,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Cancel.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnCancel;
+                @PrimaryWeapon.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnPrimaryWeapon;
+                @PrimaryWeapon.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnPrimaryWeapon;
+                @PrimaryWeapon.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnPrimaryWeapon;
             }
             m_Wrapper.m_DroneActionsCallbackInterface = instance;
             if (instance != null)
@@ -695,6 +721,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @PrimaryWeapon.started += instance.OnPrimaryWeapon;
+                @PrimaryWeapon.performed += instance.OnPrimaryWeapon;
+                @PrimaryWeapon.canceled += instance.OnPrimaryWeapon;
             }
         }
     }
@@ -923,6 +952,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         void OnThrust(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnPrimaryWeapon(InputAction.CallbackContext context);
     }
     public interface ICrewActions
     {

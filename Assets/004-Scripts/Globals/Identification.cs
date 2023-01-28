@@ -13,6 +13,7 @@ public static class Identification
         Fighter = 3,
         Mining = 4,
         Satelite = 5,
+        Mothership = 6,
 
         //---Enemy: 10 - 19
         Enemy = 10,
@@ -25,6 +26,13 @@ public static class Identification
         Interactable = 20,
         Terminal = 21,
         Window = 22,
+        DeploymentPod = 23,
+        DroneTerminal = 24,
+        EngineTerminal = 25,
+        CloneCenter = 26,
+        CloningPod = 27,
+        CommsComputer = 28,
+        MainBridge = 29,
 
         //--- Weapon Effects: 30 - 39
         WeaponEffect = 30,

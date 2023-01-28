@@ -17,16 +17,24 @@ public class DroneInputHandler : InputHandler
     private void OnEnable()
     {
         userInput.Enable();
+        drone.DeactivateAutoPilot();
     }
 
     private void OnDisable()
     {
         userInput.Disable();
+        drone.ActivateAutoPilot();
     }
     
     public void Handle()
     {
         drone.ApplyThrust(userInput.Drone.Thrust.ReadValue<Vector2>());
+
+        if (userInput.Drone.PrimaryWeapon.IsPressed())
+        {
+            drone.TryPrimaryWeapon();
+        }
+        
         
         if (userInput.Crew.Interact.WasReleasedThisFrame())
         {
