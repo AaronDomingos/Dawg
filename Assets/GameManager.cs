@@ -8,8 +8,12 @@ public class GameManager : MonoBehaviour
 
     public static Player Player;
 
-    public static GameObject MateriumContainer;
-    public static GameObject AsteroidContainer;
+    public static ObjectPool MateriumPool;
+    public static ObjectPool LargeAsteroidPool;
+    public static ObjectPool MediumAsteroidPool;
+    public static ObjectPool SmallAsteroidPool;
+    
+    
     public static GameObject WarpGateContainer;
 
     public static GameObject GnatContainer;
@@ -21,6 +25,13 @@ public class GameManager : MonoBehaviour
     public static GameObject LaserContainer;
     public static ObjectPool LaserPool;
     public static GameObject RocketContainer;
+
+    public static ObjectPool PlayerSmallShotPool;
+    public static ObjectPool PlayerLargeShotPool;
+
+    public static ObjectPool EnemySmallShotPool;
+    public static ObjectPool EnemyLargeShotPool;
+    
 
     private void Awake()
     {
@@ -37,27 +48,33 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Player = GameObject.Find("Player").GetComponent<Player>();
-        
-        MateriumContainer = GameObject.Find("MateriumContainer");
-        
-        AsteroidContainer = GameObject.Find("AsteroidContainer");
-        //AsteroidController = AsteroidContainer.GetComponent<ContainerController>();
+        PlayerSmallShotPool = GameObject.Find(
+            "PlayerSmallShotContainer").GetComponent<ObjectPool>();
+        PlayerLargeShotPool = GameObject.Find(
+            "PlayerLargeShotContainer").GetComponent<ObjectPool>();
+        EnemySmallShotPool = GameObject.Find(
+            "EnemySmallShotContainer").GetComponent<ObjectPool>();
+        EnemyLargeShotPool = GameObject.Find(
+            "EnemyLargeShotContainer").GetComponent<ObjectPool>();
 
-        WarpGateContainer = GameObject.Find("WarpGateContainer");
+
+        LargeAsteroidPool = GameObject.Find(
+            "LargeAsteroidContainer").GetComponent<ObjectPool>();
+        MediumAsteroidPool = GameObject.Find(
+            "MediumAsteroidContainer").GetComponent<ObjectPool>();
+        SmallAsteroidPool = GameObject.Find(
+            "SmallAsteroidContainer").GetComponent<ObjectPool>();
+
+        MateriumPool = GameObject.Find(
+            "MateriumContainer").GetComponent<ObjectPool>();
         
-        GnatContainer = GameObject.Find("GnatContianer");
-
-        WaspContainer = GameObject.Find("WaspContainer");
-
-        BeetleContainer = GameObject.Find("BeetleContainer");
+        
+        Debug.Log(PlayerSmallShotPool.gameObject.name);
 
         BulletContainer = GameObject.Find("BulletContainer");
         BulletPool = BulletContainer.GetComponent<ObjectPool>();
 
         LaserContainer = GameObject.Find("LaserContainer");
         LaserPool = LaserContainer.GetComponent<ObjectPool>();
-        
-        RocketContainer = GameObject.Find("RocketContainer");
     }
 }

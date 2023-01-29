@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShotWeapon : MonoBehaviour
 {
-    [SerializeField] private GameObject ShotPrefab;
+    [SerializeField] private Shot.ShotType WeaponShotType;
     
     [SerializeField] private List<Identification.Tags> TagsToCollide = 
         new List<Identification.Tags>();
@@ -13,7 +13,7 @@ public class ShotWeapon : MonoBehaviour
 
     [SerializeField] private GameObject Origin;
     [SerializeField] private float Duration = 3f;
-    [SerializeField] private float Damage = 1f;
+    public float Damage = 1f;
     [SerializeField] private float Speed = 20f;
 
     [SerializeField] private bool IsTracking = false;
@@ -26,13 +26,31 @@ public class ShotWeapon : MonoBehaviour
     {
         if (IsCooled)
         {
-            GameObject newShot = Instantiate(ShotPrefab,
-                transform.position, transform.rotation, null);
+            GameObject newShot = null;
+            switch (WeaponShotType)
+            {
+                case Shot.ShotType.PlayerLarge:
+                    newShot = GameManager.PlayerLargeShotPool.GetInstance(
+                        transform.position, transform.rotation);
+                    break;
+                case Shot.ShotType.PlayerSmall:
+                    newShot = GameManager.PlayerSmallShotPool.GetInstance(
+                        transform.position, transform.rotation);
+                    break;
+                case Shot.ShotType.EnemyLarge:
+                    newShot = GameManager.EnemyLargeShotPool.GetInstance(
+                        transform.position, transform.rotation);
+                    break;
+                case Shot.ShotType.EnemySmall:
+                    newShot = GameManager.EnemySmallShotPool.GetInstance(
+                        transform.position, transform.rotation);
+                    break;
+            }
             
             if (newShot != null)
             {
                 newShot.GetComponent<Shot>().Init(TagsToCollide, TagsToDamage,
-                    Origin, Duration, Damage, Speed, IsTracking, RotationSpeed);
+                    Origin, WeaponShotType, Duration, Damage, Speed, IsTracking, RotationSpeed);
                 StartCoroutine(CooldownTimer());
             }
         }
@@ -44,5 +62,4 @@ public class ShotWeapon : MonoBehaviour
         yield return new WaitForSeconds(Cooldown);
         IsCooled = true;
     }
-    
 }

@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 7098643848140025487}
   - component: {fileID: 6533480067146111322}
   - component: {fileID: 3223299403137607476}
+  - component: {fileID: 5743270717115663336}
   m_Layer: 0
   m_Name: LargeMateriumAsteroid
   m_TagString: Untagged
@@ -485,7 +486,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.9
+  m_Radius: 1.75
 --- !u!114 &7098643848140025487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4e76494a9524f2cab0bc4261c2c49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: {fileID: 5743270717115663336}
 --- !u!114 &3223299403137607476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +525,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcc9d38dee094fce962c869c8dacacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5743270717115663336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6662098803758007642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db3f6b9aad5749759741f29a61b40ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 10
+  MaxHealth: 10
+  CurrentStatus: 0
+  SendWhenDamaged: 1
+  SendWhenRepaired: 0
+  SendStatusHealthy: 0
+  SendStatusDamaged: 0
+  SendStatusCritical: 0
+  SendStatusDestroyed: 1
 --- !u!1 &6662098803855840919
 GameObject:
   m_ObjectHideFlags: 0

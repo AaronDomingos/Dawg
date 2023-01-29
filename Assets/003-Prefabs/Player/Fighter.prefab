@@ -95,12 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe70a410aca4b4d5fbc75b67094c50e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotPrefab: {fileID: 2162759919286204890, guid: aa4256686afd8431e9838a02ad4a703f,
-    type: 3}
-  TagsToCollide: 000000000a00000032000000
+  WeaponShotType: 1
+  TagsToCollide: 000000000a0000003200000006000000
   TagsToDamage: 000000000a00000032000000
   Origin: {fileID: 2727666959977707767}
-  ShotScale: {x: 0.5, y: 0.5, z: 0.5}
   Duration: 5
   Damage: 1
   Speed: 30
@@ -203,12 +201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe70a410aca4b4d5fbc75b67094c50e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotPrefab: {fileID: 5491290130052574122, guid: a3bfc79a04d844da191e2249b8847027,
-    type: 3}
-  TagsToCollide: 000000000a0000001f000000210000003200000064000000
+  WeaponShotType: 0
+  TagsToCollide: 000000000a0000001f00000021000000320000006400000006000000
   TagsToDamage: 000000000a00000032000000
   Origin: {fileID: 2727666959977707767}
-  ShotScale: {x: 1, y: 1, z: 1}
   Duration: 3
   Damage: 1
   Speed: 25
@@ -311,12 +307,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe70a410aca4b4d5fbc75b67094c50e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotPrefab: {fileID: 2162759919286204890, guid: aa4256686afd8431e9838a02ad4a703f,
-    type: 3}
-  TagsToCollide: 000000000a00000032000000
+  WeaponShotType: 1
+  TagsToCollide: 000000000a0000003200000006000000
   TagsToDamage: 000000000a00000032000000
   Origin: {fileID: 2727666959977707767}
-  ShotScale: {x: 0.5, y: 0.5, z: 0.5}
   Duration: 5
   Damage: 1
   Speed: 30
@@ -590,6 +584,7 @@ GameObject:
   - component: {fileID: 3089174973595605560}
   - component: {fileID: 2727666959977707765}
   - component: {fileID: 2727666959977707764}
+  - component: {fileID: 5068165397929078729}
   m_Layer: 0
   m_Name: Fighter
   m_TagString: Untagged
@@ -765,6 +760,27 @@ MonoBehaviour:
   MaximumSpeed: 0.5
   AccelerationRate: 0.005
   DecelerationRate: 0.99
+--- !u!114 &5068165397929078729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727666959977707767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db3f6b9aad5749759741f29a61b40ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 5
+  MaxHealth: 5
+  CurrentStatus: 0
+  SendWhenDamaged: 0
+  SendWhenRepaired: 0
+  SendStatusHealthy: 0
+  SendStatusDamaged: 0
+  SendStatusCritical: 0
+  SendStatusDestroyed: 1
 --- !u!1 &3293479188255038366
 GameObject:
   m_ObjectHideFlags: 0

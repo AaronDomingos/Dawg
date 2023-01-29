@@ -13,7 +13,8 @@ public class Shot : MonoBehaviour
         new List<Identification.Tags>();
     private List<Identification.Tags> TagsToDamage = 
         new List<Identification.Tags>();
-    
+
+    private ShotType Type;
     private GameObject Origin;
     private bool HasDamaged = false;
     private float Damage = 1;
@@ -21,10 +22,18 @@ public class Shot : MonoBehaviour
     
     private bool IsTracking = false;
     private float RotateSpeed = 5f;
+    
+    public enum ShotType
+    {
+        PlayerLarge,
+        PlayerSmall,
+        EnemyLarge,
+        EnemySmall
+    }
 
-    public void Init(List<Identification.Tags> tagsToCollide, 
+    public void Init( List<Identification.Tags> tagsToCollide, 
         List<Identification.Tags> tagsToDamage, GameObject origin, 
-        float duration, float damage, float speed,
+        ShotType type, float duration, float damage, float speed,
         bool isTracking, float rotationSpeed)
     {
         TagsToCollide = tagsToCollide;
@@ -34,6 +43,7 @@ public class Shot : MonoBehaviour
         RotateSpeed = rotationSpeed;
         Tracker.TagsToDetect = tagsToDamage;
 
+        Type = type;
         Origin = origin;
         Damage = damage;
         Speed = speed;
@@ -63,16 +73,15 @@ public class Shot : MonoBehaviour
         {
             if (col.gameObject.TryGetComponent(out Identity objIdentity))
             {
-                // if (objIdentity.TagsKnownAs.Intersect(TagsItCanDamage).Any() &&
-                //     col.gameObject.TryGetComponent(out Health objHealth))
-                // {
-                //     HasDamaged = true;
-                //     objHealth.Damage(Damage);
-                // }
+                if (objIdentity.TagsKnownAs.Intersect(TagsToDamage).Any() &&
+                    col.gameObject.TryGetComponent(out Health objHealth))
+                {
+                    HasDamaged = true;
+                    objHealth.Damage(Damage);
+                }
 
                 if (objIdentity.TagsKnownAs.Intersect(TagsToCollide).Any())
                 {
-                    Debug.Log("Collided with: " + col.gameObject.name);
                     CancelInvoke("Deactivate");
                     Deactivate();
                 }
@@ -82,6 +91,20 @@ public class Shot : MonoBehaviour
 
     public void Deactivate()
     {
-        Destroy(gameObject);
+        switch (Type)
+        {
+            case ShotType.PlayerLarge:
+                GameManager.PlayerLargeShotPool.Deactivate(gameObject);
+                break;
+            case ShotType.PlayerSmall:
+                GameManager.PlayerSmallShotPool.Deactivate(gameObject);
+                break;
+            case ShotType.EnemyLarge:
+                GameManager.EnemyLargeShotPool.Deactivate(gameObject);
+                break;
+            case ShotType.EnemySmall:
+                GameManager.EnemySmallShotPool.Deactivate(gameObject);
+                break;
+        }
     }
 }
