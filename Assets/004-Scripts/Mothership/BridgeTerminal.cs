@@ -17,30 +17,15 @@ public class BridgeTerminal : MonoBehaviour
     private bool inMenu = false;
     private GameObject Activator = null;
     
-    public List<GameObject> MateriumRadarOperators = new List<GameObject>();
-    public List<GameObject> EnemyRadarOperators = new List<GameObject>();
-    public float ChargePerSec = 1;
-    public float RepairPerSec = 1;
+    public List<GameObject> RadarOperators = new List<GameObject>();
 
 
     private void FixedUpdate()
     {
-        HandlePlayerScans();
-        HandleMateriumScans();
-        HandleEnemyScans();
+        HandleRadar();
     }
 
-    private void HandlePlayerScans()
-    {
-        
-    }
-    
-    private void HandleMateriumScans()
-    {
-        
-    }
-
-    private void HandleEnemyScans()
+    private void HandleRadar()
     {
         
     }
@@ -54,8 +39,6 @@ public class BridgeTerminal : MonoBehaviour
     {
         Activator = interactable.ActiveInteractors.Last();
         SetCrewMovement(Activator, false);
-        
-        Activator.GetComponent<CrewControl>().sprite.enabled = false;
         OpenMenu();
     }
 
@@ -64,10 +47,17 @@ public class BridgeTerminal : MonoBehaviour
         switch (selection)
         {
             case 0:
-                MateriumRadarOperators.Add(Activator);
+                RadarOperators.Add(Activator);
                 break;
             case 1:
-                EnemyRadarOperators.Add(Activator);
+                if (GameManager.Mothership.WarpDrive >= GameManager.Mothership.RequiredToJump)
+                {
+                    Debug.Log("Handle Win!");
+                }
+                else
+                {
+                    Debug.Log("Warp drive is not charged...");
+                }
                 break;
         }
         CloseMenu();
@@ -75,9 +65,7 @@ public class BridgeTerminal : MonoBehaviour
 
     public void CancelInteraction()
     {
-        MateriumRadarOperators.Remove(Activator);
-        EnemyRadarOperators.Remove(Activator);
-        Activator.GetComponent<CrewControl>().sprite.enabled = true;
+        RadarOperators.Remove(Activator);
         SetCrewMovement(Activator, true);
         CloseMenu();
     }

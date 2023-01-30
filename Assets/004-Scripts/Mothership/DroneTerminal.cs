@@ -57,8 +57,6 @@ public class DroneTerminal : MonoBehaviour
     {
         Activator = interactable.ActiveInteractors.Last();
         SetCrewMovement(Activator, false);
-        
-        Activator.GetComponent<CrewControl>().sprite.enabled = false;
         OpenMenu();
     }
 
@@ -84,7 +82,6 @@ public class DroneTerminal : MonoBehaviour
         FighterBuilders.Remove(Activator);
         MinerBuilders.Remove(Activator);
         SatelliteBuilders.Remove(Activator);
-        Activator.GetComponent<CrewControl>().sprite.enabled = true;
         SetCrewMovement(Activator, true);
         CloseMenu();
     }

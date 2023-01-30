@@ -45,8 +45,6 @@ public class EngineTerminal : MonoBehaviour
     {
         Activator = interactable.ActiveInteractors.Last();
         SetCrewMovement(Activator, false);
-        
-        Activator.GetComponent<CrewControl>().sprite.enabled = false;
         OpenMenu();
     }
 
@@ -68,7 +66,6 @@ public class EngineTerminal : MonoBehaviour
     {
         FtlEngineers.Remove(Activator);
         RepairEngineers.Remove(Activator);
-        Activator.GetComponent<CrewControl>().sprite.enabled = true;
         SetCrewMovement(Activator, true);
         CloseMenu();
     }

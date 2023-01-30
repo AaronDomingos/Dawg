@@ -6,7 +6,8 @@ public class MothershipManager : MonoBehaviour
 {
 
     public float Health;
-    public float WarpDrive;
+    public float WarpDrive = 0;
+    public float RequiredToJump = 2000;
 
 
 
