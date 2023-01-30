@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
 
     public Camera camera;
     public ProCamera2D proCamera;
+    public Transform CameraSpawn;
 
     public GameObject CanvasUI;
     public GameObject RadarUI;
@@ -22,7 +23,7 @@ public class PlayerManager : MonoBehaviour
     public float CrewZoom = 6;
     public float DroneZoom = 15;
     public float TargetZoom = 5f;
-    private float ZoomSpeed = 5f;
+    private float ZoomSpeed = 50f;
 
     private int AvailableCount = 0;
     [SerializeField] private int MaxPlayables = 10;
@@ -34,9 +35,18 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private List<GameObject> InitialPlayables = new List<GameObject>();
 
     public bool CanToggle = true;
+    private bool IsInitialized = false;
 
     private void Start()
     {
+        proCamera.AddCameraTarget(CameraSpawn);
+    }
+
+    private void Init()
+    {
+        Debug.Log("Initialized");
+        ZoomSpeed = 5;
+        IsInitialized = true;
         foreach (GameObject playable in InitialPlayables)
         {
             if (hasEmptyPlayables())
@@ -55,6 +65,11 @@ public class PlayerManager : MonoBehaviour
 
     private void HandleZoom()
     {
+        if (!IsInitialized && camera.orthographicSize < CrewZoom)
+        {
+            Init();
+        }
+            
         if (Mathf.Abs(camera.orthographicSize - TargetZoom) < .5f)
         {
             camera.orthographicSize = TargetZoom;
