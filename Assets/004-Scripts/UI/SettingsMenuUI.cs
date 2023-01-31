@@ -112,5 +112,10 @@ public class SettingsMenuUI : MonoBehaviour
          * and update the sliders to reflect this change */
         LoadSettings();
         UpdateSliders();
+
+        // Due to a bug with the GUI elements, slider min values must be set here...
+        masterVolumeSlider.minValue = 0.0001f;
+        effectsVolumeSlider.minValue = 0.0001f;
+        musicVolumeSlider.minValue = 0.0001f;
     }
 }
