@@ -37,6 +37,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""010150ca-81ea-4b65-a6cf-1af9e1321158"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""a826e5ca-bd56-45c7-be57-1653ed3464df"",
@@ -122,8 +131,30 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""543e6790-cc04-4228-9255-5e7c2a1cf483"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""54172d90-de96-43c8-b736-a74e63e9467a"",
                     ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13bbdbbf-6e1e-4892-a8aa-2c90bff1a098"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -144,12 +175,34 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""cea5e366-303b-4711-b5d9-527b4c577d7b"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""35d88fc2-b31e-47ea-9430-85d7def7b8d5"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PrimaryWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04b35cc5-d686-45b3-a89f-1e7f2e16ed51"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -245,6 +298,17 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e680bf52-dbf4-4687-847e-ef99fd8492bb"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b279d69d-3da5-4b5e-a7be-0b7592b3f722"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -256,8 +320,30 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""3d518f31-901e-4472-a121-055a0b475a91"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f2c9cde6-fdc8-4764-a6d4-d11459d61c58"",
                     ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc4c9097-fd04-40dc-9441-64eb37a863d1"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -281,16 +367,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Shift"",
-                    ""type"": ""Button"",
-                    ""id"": ""1fd2563a-a195-4dff-bbef-c86bd848fe56"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Toggle"",
+                    ""name"": ""NextPlayable"",
                     ""type"": ""Button"",
                     ""id"": ""5a1d6b75-a28e-4742-911b-00a52ff46439"",
                     ""expectedControlType"": ""Button"",
@@ -299,90 +376,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Index0"",
+                    ""name"": ""LastPlayable"",
                     ""type"": ""Button"",
-                    ""id"": ""ba889d7a-14b7-4cea-a2dd-2d90ab387aeb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Index1"",
-                    ""type"": ""Button"",
-                    ""id"": ""aca08eea-33cc-4a1d-b38f-1a1b3f0287cb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Index2"",
-                    ""type"": ""Button"",
-                    ""id"": ""0e485948-3267-42d0-9301-3ee8d6fc4d1d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Index3"",
-                    ""type"": ""Button"",
-                    ""id"": ""9f9a2fe7-c16d-46fc-9975-bc8a7a5c7ed2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Index4"",
-                    ""type"": ""Button"",
-                    ""id"": ""9dfb1b95-5801-4162-a3d8-b87137e7aa60"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Index5"",
-                    ""type"": ""Button"",
-                    ""id"": ""96a8b88a-5003-478f-a544-91142a31ec5e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Index6"",
-                    ""type"": ""Button"",
-                    ""id"": ""d9a69be0-8c0c-4f28-a23d-c42a0b6d05c9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Index7"",
-                    ""type"": ""Button"",
-                    ""id"": ""18ea9b42-2f88-43e1-9e06-1922df9f3d7d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Index8"",
-                    ""type"": ""Button"",
-                    ""id"": ""43e232e3-674d-4720-9a84-69c71fe93403"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Index9"",
-                    ""type"": ""Button"",
-                    ""id"": ""669370e8-9d3d-4d5b-8ade-66d6049ddf77"",
+                    ""id"": ""d01ea426-bbf6-4ed0-932e-7e4d4fcf4ac3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -403,133 +399,45 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""35f8c626-79ac-4694-adef-dfb768f56b3d"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1a8b1b90-f1f1-44bb-a885-59e945f71a13"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Toggle"",
+                    ""action"": ""NextPlayable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""83a7b5bb-009a-4c89-8524-21a5a13d1f7c"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""id"": ""98870e9f-cfd5-4eee-8743-cbe07154ea22"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Index1"",
+                    ""action"": ""NextPlayable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9fca5dfd-d768-48cd-8175-a88c65e72500"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""id"": ""5bf524ee-fc13-4fdb-af72-96c4447e1b08"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Index2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a56d96c6-3785-482b-b6f4-d8a708e6f19f"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Index3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a8bebf65-b369-4944-a59a-33fc545ac70b"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Index4"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a68dbc64-c387-4581-a2e1-b271cbf23579"",
-                    ""path"": ""<Keyboard>/5"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Index5"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f239ac64-6cf4-4b77-8293-c2867564f72f"",
-                    ""path"": ""<Keyboard>/6"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Index6"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a8e576dd-d8a8-4a6e-ab77-a4dec2a659d8"",
-                    ""path"": ""<Keyboard>/7"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Index7"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b6e4d844-b267-4ddd-bd46-ac43007d9e0c"",
-                    ""path"": ""<Keyboard>/8"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Index8"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c280e252-ec33-47dd-bc9b-bc1d46aa622f"",
-                    ""path"": ""<Keyboard>/9"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Index9"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7624771a-d7e3-4fa9-9f67-8b7ed381b1af"",
-                    ""path"": ""<Keyboard>/0"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Index0"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0fa39c67-cc18-453f-ac2c-780ba4fa7623"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shift"",
+                    ""action"": ""LastPlayable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -538,50 +446,8 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         {
             ""name"": ""Admin"",
             ""id"": ""c0aba9b0-88f3-4b8f-be23-caa80918b836"",
-            ""actions"": [
-                {
-                    ""name"": ""Toggle"",
-                    ""type"": ""Button"",
-                    ""id"": ""f551f81e-ee91-447d-85e8-58254180249f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Materium"",
-                    ""type"": ""Button"",
-                    ""id"": ""7dd92d92-48fc-4644-b8bd-75f3a8ecc6ec"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""3ed1826c-5444-40eb-9e9b-1a450988523e"",
-                    ""path"": ""<Keyboard>/t"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Toggle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cede295a-05dc-4480-9aa4-2e772838a31a"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Materium"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": []
@@ -589,6 +455,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         // Drone
         m_Drone = asset.FindActionMap("Drone", throwIfNotFound: true);
         m_Drone_Thrust = m_Drone.FindAction("Thrust", throwIfNotFound: true);
+        m_Drone_Rotate = m_Drone.FindAction("Rotate", throwIfNotFound: true);
         m_Drone_Interact = m_Drone.FindAction("Interact", throwIfNotFound: true);
         m_Drone_Cancel = m_Drone.FindAction("Cancel", throwIfNotFound: true);
         m_Drone_PrimaryWeapon = m_Drone.FindAction("PrimaryWeapon", throwIfNotFound: true);
@@ -600,22 +467,10 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         // User
         m_User = asset.FindActionMap("User", throwIfNotFound: true);
         m_User_Quit = m_User.FindAction("Quit", throwIfNotFound: true);
-        m_User_Shift = m_User.FindAction("Shift", throwIfNotFound: true);
-        m_User_Toggle = m_User.FindAction("Toggle", throwIfNotFound: true);
-        m_User_Index0 = m_User.FindAction("Index0", throwIfNotFound: true);
-        m_User_Index1 = m_User.FindAction("Index1", throwIfNotFound: true);
-        m_User_Index2 = m_User.FindAction("Index2", throwIfNotFound: true);
-        m_User_Index3 = m_User.FindAction("Index3", throwIfNotFound: true);
-        m_User_Index4 = m_User.FindAction("Index4", throwIfNotFound: true);
-        m_User_Index5 = m_User.FindAction("Index5", throwIfNotFound: true);
-        m_User_Index6 = m_User.FindAction("Index6", throwIfNotFound: true);
-        m_User_Index7 = m_User.FindAction("Index7", throwIfNotFound: true);
-        m_User_Index8 = m_User.FindAction("Index8", throwIfNotFound: true);
-        m_User_Index9 = m_User.FindAction("Index9", throwIfNotFound: true);
+        m_User_NextPlayable = m_User.FindAction("NextPlayable", throwIfNotFound: true);
+        m_User_LastPlayable = m_User.FindAction("LastPlayable", throwIfNotFound: true);
         // Admin
         m_Admin = asset.FindActionMap("Admin", throwIfNotFound: true);
-        m_Admin_Toggle = m_Admin.FindAction("Toggle", throwIfNotFound: true);
-        m_Admin_Materium = m_Admin.FindAction("Materium", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -676,6 +531,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Drone;
     private IDroneActions m_DroneActionsCallbackInterface;
     private readonly InputAction m_Drone_Thrust;
+    private readonly InputAction m_Drone_Rotate;
     private readonly InputAction m_Drone_Interact;
     private readonly InputAction m_Drone_Cancel;
     private readonly InputAction m_Drone_PrimaryWeapon;
@@ -684,6 +540,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         private @UserInput m_Wrapper;
         public DroneActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Thrust => m_Wrapper.m_Drone_Thrust;
+        public InputAction @Rotate => m_Wrapper.m_Drone_Rotate;
         public InputAction @Interact => m_Wrapper.m_Drone_Interact;
         public InputAction @Cancel => m_Wrapper.m_Drone_Cancel;
         public InputAction @PrimaryWeapon => m_Wrapper.m_Drone_PrimaryWeapon;
@@ -699,6 +556,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Thrust.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnThrust;
                 @Thrust.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnThrust;
                 @Thrust.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnThrust;
+                @Rotate.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnRotate;
                 @Interact.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnInteract;
@@ -715,6 +575,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Thrust.started += instance.OnThrust;
                 @Thrust.performed += instance.OnThrust;
                 @Thrust.canceled += instance.OnThrust;
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -782,35 +645,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_User;
     private IUserActions m_UserActionsCallbackInterface;
     private readonly InputAction m_User_Quit;
-    private readonly InputAction m_User_Shift;
-    private readonly InputAction m_User_Toggle;
-    private readonly InputAction m_User_Index0;
-    private readonly InputAction m_User_Index1;
-    private readonly InputAction m_User_Index2;
-    private readonly InputAction m_User_Index3;
-    private readonly InputAction m_User_Index4;
-    private readonly InputAction m_User_Index5;
-    private readonly InputAction m_User_Index6;
-    private readonly InputAction m_User_Index7;
-    private readonly InputAction m_User_Index8;
-    private readonly InputAction m_User_Index9;
+    private readonly InputAction m_User_NextPlayable;
+    private readonly InputAction m_User_LastPlayable;
     public struct UserActions
     {
         private @UserInput m_Wrapper;
         public UserActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Quit => m_Wrapper.m_User_Quit;
-        public InputAction @Shift => m_Wrapper.m_User_Shift;
-        public InputAction @Toggle => m_Wrapper.m_User_Toggle;
-        public InputAction @Index0 => m_Wrapper.m_User_Index0;
-        public InputAction @Index1 => m_Wrapper.m_User_Index1;
-        public InputAction @Index2 => m_Wrapper.m_User_Index2;
-        public InputAction @Index3 => m_Wrapper.m_User_Index3;
-        public InputAction @Index4 => m_Wrapper.m_User_Index4;
-        public InputAction @Index5 => m_Wrapper.m_User_Index5;
-        public InputAction @Index6 => m_Wrapper.m_User_Index6;
-        public InputAction @Index7 => m_Wrapper.m_User_Index7;
-        public InputAction @Index8 => m_Wrapper.m_User_Index8;
-        public InputAction @Index9 => m_Wrapper.m_User_Index9;
+        public InputAction @NextPlayable => m_Wrapper.m_User_NextPlayable;
+        public InputAction @LastPlayable => m_Wrapper.m_User_LastPlayable;
         public InputActionMap Get() { return m_Wrapper.m_User; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -823,42 +666,12 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Quit.started -= m_Wrapper.m_UserActionsCallbackInterface.OnQuit;
                 @Quit.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnQuit;
                 @Quit.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnQuit;
-                @Shift.started -= m_Wrapper.m_UserActionsCallbackInterface.OnShift;
-                @Shift.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnShift;
-                @Shift.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnShift;
-                @Toggle.started -= m_Wrapper.m_UserActionsCallbackInterface.OnToggle;
-                @Toggle.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnToggle;
-                @Toggle.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnToggle;
-                @Index0.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex0;
-                @Index0.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex0;
-                @Index0.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex0;
-                @Index1.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex1;
-                @Index1.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex1;
-                @Index1.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex1;
-                @Index2.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex2;
-                @Index2.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex2;
-                @Index2.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex2;
-                @Index3.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex3;
-                @Index3.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex3;
-                @Index3.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex3;
-                @Index4.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex4;
-                @Index4.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex4;
-                @Index4.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex4;
-                @Index5.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex5;
-                @Index5.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex5;
-                @Index5.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex5;
-                @Index6.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex6;
-                @Index6.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex6;
-                @Index6.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex6;
-                @Index7.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex7;
-                @Index7.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex7;
-                @Index7.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex7;
-                @Index8.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex8;
-                @Index8.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex8;
-                @Index8.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex8;
-                @Index9.started -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex9;
-                @Index9.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex9;
-                @Index9.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnIndex9;
+                @NextPlayable.started -= m_Wrapper.m_UserActionsCallbackInterface.OnNextPlayable;
+                @NextPlayable.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnNextPlayable;
+                @NextPlayable.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnNextPlayable;
+                @LastPlayable.started -= m_Wrapper.m_UserActionsCallbackInterface.OnLastPlayable;
+                @LastPlayable.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnLastPlayable;
+                @LastPlayable.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnLastPlayable;
             }
             m_Wrapper.m_UserActionsCallbackInterface = instance;
             if (instance != null)
@@ -866,42 +679,12 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
-                @Shift.started += instance.OnShift;
-                @Shift.performed += instance.OnShift;
-                @Shift.canceled += instance.OnShift;
-                @Toggle.started += instance.OnToggle;
-                @Toggle.performed += instance.OnToggle;
-                @Toggle.canceled += instance.OnToggle;
-                @Index0.started += instance.OnIndex0;
-                @Index0.performed += instance.OnIndex0;
-                @Index0.canceled += instance.OnIndex0;
-                @Index1.started += instance.OnIndex1;
-                @Index1.performed += instance.OnIndex1;
-                @Index1.canceled += instance.OnIndex1;
-                @Index2.started += instance.OnIndex2;
-                @Index2.performed += instance.OnIndex2;
-                @Index2.canceled += instance.OnIndex2;
-                @Index3.started += instance.OnIndex3;
-                @Index3.performed += instance.OnIndex3;
-                @Index3.canceled += instance.OnIndex3;
-                @Index4.started += instance.OnIndex4;
-                @Index4.performed += instance.OnIndex4;
-                @Index4.canceled += instance.OnIndex4;
-                @Index5.started += instance.OnIndex5;
-                @Index5.performed += instance.OnIndex5;
-                @Index5.canceled += instance.OnIndex5;
-                @Index6.started += instance.OnIndex6;
-                @Index6.performed += instance.OnIndex6;
-                @Index6.canceled += instance.OnIndex6;
-                @Index7.started += instance.OnIndex7;
-                @Index7.performed += instance.OnIndex7;
-                @Index7.canceled += instance.OnIndex7;
-                @Index8.started += instance.OnIndex8;
-                @Index8.performed += instance.OnIndex8;
-                @Index8.canceled += instance.OnIndex8;
-                @Index9.started += instance.OnIndex9;
-                @Index9.performed += instance.OnIndex9;
-                @Index9.canceled += instance.OnIndex9;
+                @NextPlayable.started += instance.OnNextPlayable;
+                @NextPlayable.performed += instance.OnNextPlayable;
+                @NextPlayable.canceled += instance.OnNextPlayable;
+                @LastPlayable.started += instance.OnLastPlayable;
+                @LastPlayable.performed += instance.OnLastPlayable;
+                @LastPlayable.canceled += instance.OnLastPlayable;
             }
         }
     }
@@ -910,14 +693,10 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     // Admin
     private readonly InputActionMap m_Admin;
     private IAdminActions m_AdminActionsCallbackInterface;
-    private readonly InputAction m_Admin_Toggle;
-    private readonly InputAction m_Admin_Materium;
     public struct AdminActions
     {
         private @UserInput m_Wrapper;
         public AdminActions(@UserInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Toggle => m_Wrapper.m_Admin_Toggle;
-        public InputAction @Materium => m_Wrapper.m_Admin_Materium;
         public InputActionMap Get() { return m_Wrapper.m_Admin; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -927,22 +706,10 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_AdminActionsCallbackInterface != null)
             {
-                @Toggle.started -= m_Wrapper.m_AdminActionsCallbackInterface.OnToggle;
-                @Toggle.performed -= m_Wrapper.m_AdminActionsCallbackInterface.OnToggle;
-                @Toggle.canceled -= m_Wrapper.m_AdminActionsCallbackInterface.OnToggle;
-                @Materium.started -= m_Wrapper.m_AdminActionsCallbackInterface.OnMaterium;
-                @Materium.performed -= m_Wrapper.m_AdminActionsCallbackInterface.OnMaterium;
-                @Materium.canceled -= m_Wrapper.m_AdminActionsCallbackInterface.OnMaterium;
             }
             m_Wrapper.m_AdminActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Toggle.started += instance.OnToggle;
-                @Toggle.performed += instance.OnToggle;
-                @Toggle.canceled += instance.OnToggle;
-                @Materium.started += instance.OnMaterium;
-                @Materium.performed += instance.OnMaterium;
-                @Materium.canceled += instance.OnMaterium;
             }
         }
     }
@@ -950,6 +717,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     public interface IDroneActions
     {
         void OnThrust(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnPrimaryWeapon(InputAction.CallbackContext context);
@@ -963,22 +731,10 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     public interface IUserActions
     {
         void OnQuit(InputAction.CallbackContext context);
-        void OnShift(InputAction.CallbackContext context);
-        void OnToggle(InputAction.CallbackContext context);
-        void OnIndex0(InputAction.CallbackContext context);
-        void OnIndex1(InputAction.CallbackContext context);
-        void OnIndex2(InputAction.CallbackContext context);
-        void OnIndex3(InputAction.CallbackContext context);
-        void OnIndex4(InputAction.CallbackContext context);
-        void OnIndex5(InputAction.CallbackContext context);
-        void OnIndex6(InputAction.CallbackContext context);
-        void OnIndex7(InputAction.CallbackContext context);
-        void OnIndex8(InputAction.CallbackContext context);
-        void OnIndex9(InputAction.CallbackContext context);
+        void OnNextPlayable(InputAction.CallbackContext context);
+        void OnLastPlayable(InputAction.CallbackContext context);
     }
     public interface IAdminActions
     {
-        void OnToggle(InputAction.CallbackContext context);
-        void OnMaterium(InputAction.CallbackContext context);
     }
 }
