@@ -44,7 +44,7 @@ public class GameSettings : MonoBehaviour
         set
         {
             masterVolume = value;
-            audioMixer.SetFloat("MasterVolume", value);
+            AudioController.singleton.ChangeVolume("MasterVolume", value);
         }
     }
 
@@ -53,7 +53,7 @@ public class GameSettings : MonoBehaviour
         set
         {
             effectsVolume = value;
-            audioMixer.SetFloat("EffectsVolume", value);
+            AudioController.singleton.ChangeVolume("EffectsVolume", value);
         }
     }
 
@@ -61,7 +61,7 @@ public class GameSettings : MonoBehaviour
         set
         {
             musicVolume = value;
-            audioMixer.SetFloat("MasterVolume", value);
+            AudioController.singleton.ChangeVolume("MusicVolume", value);
         }
     }
 

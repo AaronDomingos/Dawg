@@ -10,6 +10,8 @@ public class SettingsMenuUI : MonoBehaviour
 
     [SerializeField] private string mainMenuSceneName;
 
+    [SerializeField] private AudioClip clickSound;
+
     // UI elements
     [SerializeField] private Slider difficultySlider;
     [SerializeField] private Slider masterVolumeSlider;
@@ -51,6 +53,7 @@ public class SettingsMenuUI : MonoBehaviour
     {
         // Disregard changes and return to main menu
         SceneManager.LoadScene(mainMenuSceneName);
+        AudioController.singleton.PlayGuiEffect(clickSound);
     }
 
     public void OnClickSaveBtn()
@@ -58,12 +61,14 @@ public class SettingsMenuUI : MonoBehaviour
         // Save changes and return to main menu
         SaveSettings();
         SceneManager.LoadScene(mainMenuSceneName);
+        AudioController.singleton.PlayGuiEffect(clickSound);
     }
 
     public void OnClickResetBtn()
     {
         ResetDefaults();
         UpdateSliders();
+        AudioController.singleton.PlayGuiEffect(clickSound);
     }
 
     private void SaveSettings()

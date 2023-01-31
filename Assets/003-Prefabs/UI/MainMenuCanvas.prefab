@@ -703,6 +703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSceneName: SinglePlayerTesting
   settingsSceneName: SettingsMenu
+  clickSound: {fileID: 8300000, guid: d1c72ece75d8a4d60ac553d73397488a, type: 3}
 --- !u!1 &6484035743973586614
 GameObject:
   m_ObjectHideFlags: 0

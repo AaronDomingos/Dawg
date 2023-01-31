@@ -2360,6 +2360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuSceneName: MainMenu
+  clickSound: {fileID: 8300000, guid: d1c72ece75d8a4d60ac553d73397488a, type: 3}
   difficultySlider: {fileID: 1616629447224038622}
   masterVolumeSlider: {fileID: 1768910823261599996}
   effectsVolumeSlider: {fileID: 618331921864192047}
