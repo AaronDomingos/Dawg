@@ -14,26 +14,43 @@ public class DroneMovement : MonoBehaviour
     private Vector3 Direction = Vector3.zero;
     private Vector3 Momentum = Vector3.zero;
 
+    private bool canMove = true;
+
     private void FixedUpdate()
     {
         HandleMomentum();
         HandleRotation();
     }
 
+    public void SetCanMove(bool value)
+    {
+        if (value == false)
+        {
+            Direction = Vector3.zero;
+            Momentum = Vector3.zero;
+            canMove = false;
+            return;
+        }
+        canMove = true;
+    }
+
     private void HandleMomentum()
     {
-        Momentum = Vector3.ClampMagnitude(
-            Momentum + (Direction * AccelerationRate), MaximumSpeed);
-
-        transform.position += Momentum * Time.fixedDeltaTime;
-        if (Momentum != Vector3.zero)
+        if (canMove)
         {
-            transform.position += Momentum;
-            Momentum *= DecelerationRate;
-            if (Momentum.x < MinimumSpeed && Momentum.x > -MinimumSpeed &&
-                Momentum.y < MinimumSpeed && Momentum.y > -MinimumSpeed)
+            Momentum = Vector3.ClampMagnitude(
+                Momentum + (Direction * AccelerationRate), MaximumSpeed);
+
+            transform.position += Momentum * Time.fixedDeltaTime;
+            if (Momentum != Vector3.zero)
             {
-                Momentum = Vector3.zero;
+                transform.position += Momentum;
+                Momentum *= DecelerationRate;
+                if (Momentum.x < MinimumSpeed && Momentum.x > -MinimumSpeed &&
+                    Momentum.y < MinimumSpeed && Momentum.y > -MinimumSpeed)
+                {
+                    Momentum = Vector3.zero;
+                }
             }
         }
     }

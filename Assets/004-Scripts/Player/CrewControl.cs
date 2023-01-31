@@ -10,7 +10,7 @@ public class CrewControl : MonoBehaviour
     public IdDetector interactableDetector;
     public Interactable currentInteraction;
     public CrewMovement crewMovement;
-    
+
     private void Update()
     {
         input.Handle();
@@ -19,5 +19,10 @@ public class CrewControl : MonoBehaviour
     public void ApplyWalk(Vector3 direction)
     {
         crewMovement.SetDirection(direction);
+    }
+
+    public void SetColor(Color newColor)
+    {
+        sprite.color = newColor;
     }
 }

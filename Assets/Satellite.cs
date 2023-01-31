@@ -1,17 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using System.Linq;
 
-public class Fighter : DroneControl
+public class Satellite : DroneControl
 {
-
     public IdDetector MateriumDetector;
     
-    [SerializeField] private ShotWeapon HeavyShooter;
-    [SerializeField] private ShotWeapon SmallShooterA;
-    [SerializeField] private ShotWeapon SmallShooterB;
 
     private bool IsAuto = false;
     
@@ -43,9 +38,7 @@ public class Fighter : DroneControl
 
     public override void TryPrimaryWeapon()
     {
-        HeavyShooter.TryFire();
-        SmallShooterA.TryFire();
-        SmallShooterB.TryFire();
+        // Laser Drill
     }
 
     public override void ActivateAutoPilot()

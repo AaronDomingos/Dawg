@@ -1,12 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AsteroidSpawner : MonoBehaviour
 {
+    public SpriteRenderer MySprite;
+    public SpriteRenderer TargetSprite;
+    
     
     public SpawnWeights spawnWeights = new SpawnWeights(10, 4, 1);
 
+    [Serializable]
     public class SpawnWeights
     {
         public int Small;
@@ -29,50 +35,42 @@ public class AsteroidSpawner : MonoBehaviour
     }
 
 
+    private Vector3 PointInBounds(Renderer target)
+    {
+        float maxX = target.bounds.size.x * .5f;
+        float maxY = target.bounds.size.y * .5f;
+
+        return new Vector3(
+            Random.Range(-maxX, maxX),
+            Random.Range(-maxY, maxY));
+    }
+
+
     public void SpawnRandom()
     {
         int randomEnemy = Random.Range(1, spawnWeights.Total);
+        Vector3 start = PointInBounds(MySprite) + transform.position;
+        Vector3 finish = PointInBounds(TargetSprite);
+        Vector3 directionTo = Orientation.DirectionToVector(start, finish);
+        start += directionTo * 25;
 
+        GameObject newAsteroid = null;
         if (randomEnemy < spawnWeights.Small)
         {
-            SpawnSmall();
-            return;
+            newAsteroid = GameManager.SmallAsteroidPool.GetInstance(start, transform.rotation);
         }
-        if (randomEnemy < spawnWeights.Small + spawnWeights.Medium)
+        else if (randomEnemy < spawnWeights.Small + spawnWeights.Medium)
         {
-            SpawnMedium();
-            return;
+            newAsteroid = GameManager.MediumAsteroidPool.GetInstance(start, transform.rotation);
         }
-        SpawnLarge();
-    }
+        else
+        {
+            newAsteroid = GameManager.LargeAsteroidPool.GetInstance(start, transform.rotation);
+        }
 
-    private void SpawnSmall()
-    {
-        GameObject newAsteroid = GameManager.SmallAsteroidPool.GetInstance(
-            transform.position, transform.rotation);
         if (newAsteroid != null)
         {
-            newAsteroid.GetComponent<Asteroid>().Init();
-        }
-    }
-
-    private void SpawnMedium()
-    {
-        GameObject newAsteroid = GameManager.MediumAsteroidPool.GetInstance(
-            transform.position, transform.rotation);
-        if (newAsteroid != null)
-        {
-            newAsteroid.GetComponent<Asteroid>().Init();
-        }
-    }
-
-    private void SpawnLarge()
-    {
-        GameObject newAsteroid = GameManager.LargeAsteroidPool.GetInstance(
-            transform.position, transform.rotation);
-        if (newAsteroid != null)
-        {
-            newAsteroid.GetComponent<Beetle>().Init();
+            newAsteroid.GetComponent<Asteroid>().Init(directionTo);
         }
     }
 }

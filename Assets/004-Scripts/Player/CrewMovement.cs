@@ -33,4 +33,9 @@ public class CrewMovement : MonoBehaviour
             transform.position += Direction * Speed * Time.fixedDeltaTime;
         }
     }
+    
+    public void SetCrewMovement(bool canMove)
+    {
+        CanMove = canMove;
+    }
 }

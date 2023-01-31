@@ -8,7 +8,7 @@ public class DroneControl : MonoBehaviour
     [SerializeField] private DroneInputHandler input;
 
     public GameObject Pilot;
-    
+
     public IdDetector interactableDetector;
     public Interactable currentInteraction;
     public DroneMovement droneMovement;
@@ -17,7 +17,7 @@ public class DroneControl : MonoBehaviour
     {
         input.Handle();
     }
-    
+
     public void ApplyThrust(Vector3 direction)
     {
         droneMovement.SetDirection(direction);

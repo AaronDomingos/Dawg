@@ -24,9 +24,8 @@ public class Hivemind : MonoBehaviour
     public static float BeetleSpitDamage = 10;
     public static float BeetleFartDamage = 1;
     
-    
-    
     public static ObjectPool SwarmPool;
+    public static ObjectPool WarpGatePool;
 
     [SerializeField] private GameObject SwarmPrefab;
     public static List<Swarm> AllSwarms = new List<Swarm>();
@@ -52,7 +51,20 @@ public class Hivemind : MonoBehaviour
         WaspPool = transform.Find("WaspPool").GetComponent<ObjectPool>();
         BeetlePool = transform.Find("BeetlePool").GetComponent<ObjectPool>();
         SwarmPool = transform.Find("SwarmPool").GetComponent<ObjectPool>();
+        WarpGatePool = transform.Find("WarpGatePool").GetComponent<ObjectPool>();
+        
+        //InvokeRepeating("OpenWarpGates", 1, 5);
     }
+
+    private void OpenWarpGates()
+    {
+        Vector3 spawnPoint = (Random.insideUnitCircle.normalized * 175) + 
+                             (Random.insideUnitCircle.normalized * 25);
+
+        GameObject newWarpGate = WarpGatePool.GetInstance(spawnPoint, Quaternion.identity);
+        newWarpGate.GetComponent<WarpGate>().Init();
+    }
+    
 
     public static Swarm FindClosestSwarm(GameObject swarmling)
     {

@@ -47,6 +47,7 @@ public static class Identification
         //--- Asteroids: 50 - 59
         Asteroid = 50,
         MineralRich = 51,
+        Bounds = 52,
 
         //--- Planets: 60 - 69
         Planet = 60,

@@ -103,6 +103,7 @@ public class Interactable : MonoBehaviour
 
     public void Interact(GameObject interactor)
     {
+        Debug.Log(interactor.name);
         if (canInteract())
         {
             Debug.Log("Invoking Interaction");
@@ -116,6 +117,11 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    public void CancelActivePlayable()
+    {
+        Cancel(GameManager.Player.ActivePlayable);
+    }
+    
     public void Cancel(GameObject interactor)
     {
         if (ActiveInteractors.Contains(interactor))

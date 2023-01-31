@@ -28,6 +28,13 @@ public class WarpGate : MonoBehaviour
     
     private void Start()
     {
+        //InvokeRepeating("SpawnRandom", 1, 5);
+    }
+
+    public void Init()
+    {
+        transform.rotation = Orientation.QuarternionFromAToB(
+            transform, Vector3.zero, 1000f);
         InvokeRepeating("SpawnRandom", 1, 5);
     }
 
@@ -77,5 +84,11 @@ public class WarpGate : MonoBehaviour
         {
             newBeetle.GetComponent<Beetle>().Init();
         }
+    }
+
+
+    private void Deactivate()
+    {
+        CancelInvoke();   
     }
 }

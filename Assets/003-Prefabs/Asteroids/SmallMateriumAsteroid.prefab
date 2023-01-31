@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 5596632322802796503}
   - component: {fileID: 787690507039161053}
   - component: {fileID: 6152191027700958112}
+  - component: {fileID: 2108905206154609545}
   m_Layer: 0
   m_Name: SmallMateriumAsteroid
   m_TagString: Untagged
@@ -169,14 +170,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2189384690243397184}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -223,6 +224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4e76494a9524f2cab0bc4261c2c49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CrashZone: {fileID: 3896731056601607978}
+  Health: {fileID: 2108905206154609545}
+  AsteroidSize: 2
 --- !u!114 &6152191027700958112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +239,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcc9d38dee094fce962c869c8dacacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2108905206154609545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2189384690243397184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db3f6b9aad5749759741f29a61b40ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 5
+  MaxHealth: 5
+  CurrentStatus: 0
+  SendWhenDamaged: 1
+  SendWhenRepaired: 0
+  SendStatusHealthy: 0
+  SendStatusDamaged: 0
+  SendStatusCritical: 0
+  SendStatusDestroyed: 1
 --- !u!1 &2189384690551216783
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +590,32 @@ PrefabInstance:
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: TagsToDetect.Array.size
-      value: 0
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: TagsToDetect.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: TagsToDetect.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: TagsToDetect.Array.data[2]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: TagsToDetect.Array.data[3]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: TagsToDetect.Array.data[4]
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900456, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
@@ -580,3 +630,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8867122664933982909}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3896731056601607978 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8867122664933982909}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fb3842b889f4190ad1e72be1dcc263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
