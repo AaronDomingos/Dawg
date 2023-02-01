@@ -30,6 +30,11 @@ public class DroneControl : MonoBehaviour
         droneMovement.SetDirection(direction);
     }
 
+    public void SetRotationTarget(Vector3 direction)
+    {
+        droneMovement.SetRotation(direction);
+    }
+
     public virtual void TryPrimaryWeapon()
     {
         Debug.Log("Trying to use primary weapon");

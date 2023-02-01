@@ -121,6 +121,7 @@ public class Interactable : MonoBehaviour
             {
                 // AudioController.singleton.PlayGuiEffect(
                 //     AudioController.singleton.Interaction);
+                
                 InteractionEvent.Invoke();
                 return;
             }

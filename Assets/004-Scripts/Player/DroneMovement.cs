@@ -13,13 +13,17 @@ public class DroneMovement : MonoBehaviour
     
     private Vector3 Direction = Vector3.zero;
     private Vector3 Momentum = Vector3.zero;
+    private Vector3 RightStick = Vector3.zero;
+
+    public List<Transform> ThingsToRotate = new List<Transform>();
 
     private bool canMove = true;
 
     private void FixedUpdate()
     {
         HandleMomentum();
-        HandleRotation();
+        DefaultRotation();
+        RightStickRotation();
     }
 
     public void SetCanMove(bool value)
@@ -55,13 +59,29 @@ public class DroneMovement : MonoBehaviour
         }
     }
 
-    private void HandleRotation()
+    private void DefaultRotation()
     {
         if (Direction != Vector3.zero && Momentum != Vector3.zero)
         {
             Quaternion toRotate = Quaternion.LookRotation(
                 Vector3.forward, Momentum);
             transform.rotation = Quaternion.RotateTowards(
+                transform.rotation, toRotate, RotateSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    private void RightStickRotation()
+    {
+        // Quaternion toRotate = Quaternion.LookRotation(
+        //     Vector3.forward, RightStick);
+        // transform.rotation = Quaternion.RotateTowards(
+        //     transform.rotation, toRotate, RotateSpeed * Time.fixedDeltaTime);
+
+        foreach (Transform obj in ThingsToRotate)
+        {
+            Quaternion toRotate = Quaternion.LookRotation(
+                Vector3.zero, RightStick);
+            obj.rotation = Quaternion.RotateTowards(
                 transform.rotation, toRotate, RotateSpeed * Time.fixedDeltaTime);
         }
     }
@@ -74,5 +94,10 @@ public class DroneMovement : MonoBehaviour
     public void SetMomentum(Vector3 direction, float power)
     {
         Momentum = direction * power;
+    }
+
+    public void SetRotation(Vector3 direction)
+    {
+        RightStick = direction;
     }
 }

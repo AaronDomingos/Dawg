@@ -38,6 +38,10 @@ public class IdDetector : MonoBehaviour
         {
             // Object is both A and B for all Good Pairings
             bool hasAGoodPairing = false;
+            if (BothAAndB.Count == 0)
+            {
+                hasAGoodPairing = true;
+            }
             foreach (TagPairing pair in BothAAndB)
             {
                 if (id.TagsKnownAs.Contains(pair.A) &&

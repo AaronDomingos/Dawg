@@ -29,13 +29,14 @@ public class DroneInputHandler : InputHandler
     public void Handle()
     {
         drone.ApplyThrust(userInput.Drone.Thrust.ReadValue<Vector2>());
+        drone.SetRotationTarget(userInput.Drone.Rotate.ReadValue<Vector2>());
 
         if (userInput.Drone.PrimaryWeapon.IsPressed())
         {
             drone.TryPrimaryWeapon();
         }
-        
-        
+
+
         if (userInput.Crew.Interact.WasReleasedThisFrame())
         {
             TryInteraction();
