@@ -11868,6 +11868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MateriumTxt: {fileID: 318630469}
+  ftlSlider: {fileID: 1605890282}
   Health: 10
   WarpDrive: 0
   RequiredToJump: 2000
