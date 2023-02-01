@@ -7,8 +7,9 @@ public class DroneControl : MonoBehaviour
 {
     [SerializeField] private DroneInputHandler input;
 
-    public GameObject Pilot;
-
+    public Color DroneColor = Color.white;
+    public SpriteRenderer sprite;
+        
     public IdDetector interactableDetector;
     public Interactable currentInteraction;
     public DroneMovement droneMovement;
@@ -16,6 +17,12 @@ public class DroneControl : MonoBehaviour
     private void Update()
     {
         input.Handle();
+    }
+
+    public void SetDroneColor(Color newColor)
+    {
+        DroneColor = newColor;
+        sprite.color = newColor;
     }
 
     public void ApplyThrust(Vector3 direction)

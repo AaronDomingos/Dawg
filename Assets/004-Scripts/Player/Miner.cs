@@ -21,7 +21,7 @@ public class Miner : DroneControl
             foreach (GameObject materium in MateriumDetector.DetectedObjects.ToList())
             {
                 Materium script = materium.GetComponent<Materium>();
-                script.Attract(Proximity.DirectionToObject(materium, gameObject) * 5f);
+                script.Attract(Proximity.DirectionToObject(materium, gameObject) * 10f);
                 if (Vector3.Distance(transform.position, materium.transform.position) < 4f)
                 {
                     GameManager.Mothership.Materium += script.Value;

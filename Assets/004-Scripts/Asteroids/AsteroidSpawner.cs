@@ -8,8 +8,8 @@ public class AsteroidSpawner : MonoBehaviour
 {
     public SpriteRenderer MySprite;
     public SpriteRenderer TargetSprite;
-    
-    
+
+    public int MaxAsteroidsToPopulate = 20;
     public SpawnWeights spawnWeights = new SpawnWeights(10, 4, 1);
 
     [Serializable]
@@ -31,7 +31,7 @@ public class AsteroidSpawner : MonoBehaviour
     
     private void Start()
     {
-        InvokeRepeating("SpawnRandom", 1, 5);
+        InvokeRepeating("TrySpawn", 1, 5);
     }
 
 
@@ -45,6 +45,17 @@ public class AsteroidSpawner : MonoBehaviour
             Random.Range(-maxY, maxY));
     }
 
+
+    private void TrySpawn()
+    {
+        if (GameManager.SmallAsteroidPool.EnabledObjects.Count +
+            GameManager.MediumAsteroidPool.EnabledObjects.Count +
+            GameManager.LargeAsteroidPool.EnabledObjects.Count < MaxAsteroidsToPopulate)
+        {
+            SpawnRandom();
+        }
+    }
+    
 
     public void SpawnRandom()
     {

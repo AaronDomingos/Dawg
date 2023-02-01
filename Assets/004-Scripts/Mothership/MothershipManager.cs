@@ -14,6 +14,11 @@ public class MothershipManager : MonoBehaviour
     public float WarpDrive = 0;
     public float RequiredToJump = 2000;
     public int Materium = 250;
+    public int Survivors = 0;
+
+    public int FighterCount = 1;
+    public int MinerCount = 1;
+    public int SatelliteCount = 1;
 
 
     private void FixedUpdate()

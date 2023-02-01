@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
+    public SpriteRenderer InteractionZoneSprite;
     public IdDetector Detector;
     [SerializeField] private UnityEvent InteractionEvent;
     [SerializeField] private UnityEvent CancelationEvent;
@@ -17,6 +18,11 @@ public class Interactable : MonoBehaviour
     public InteractableState CurrentState = InteractableState.Default;
 
     private GameObject EligibleInteractor = null;
+
+    private void Start()
+    {
+        InteractionZoneSprite = Detector.transform.GetComponent<SpriteRenderer>();
+    }
     
     public enum InteractableState
     {
@@ -54,10 +60,13 @@ public class Interactable : MonoBehaviour
         {
             if (ActiveInteractors.Contains(EligibleInteractor))
             {
+                InteractionZoneSprite.color = new Color(200, 0, 0, .075f);
                 return InteractableState.ActiveIsInteracting;
             }
+            InteractionZoneSprite.color = new Color(0, 200, 0, .075f);
             return InteractableState.ActiveCanInteract;
         }
+        InteractionZoneSprite.color = Color.clear;
         return InteractableState.Default;
     }
 

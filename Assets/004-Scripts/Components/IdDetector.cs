@@ -37,13 +37,13 @@ public class IdDetector : MonoBehaviour
             id.TagsKnownAs.Intersect(TagsToDetect).Any())
         {
             // Object is both A and B for all Good Pairings
-            bool isAllGoodPairings = true;
+            bool hasAGoodPairing = false;
             foreach (TagPairing pair in BothAAndB)
             {
-                if (!(id.TagsKnownAs.Contains(pair.A) &&
-                    id.TagsKnownAs.Contains(pair.B)))
+                if (id.TagsKnownAs.Contains(pair.A) &&
+                    id.TagsKnownAs.Contains(pair.B))
                 {
-                    isAllGoodPairings = false;
+                    hasAGoodPairing = true;
                     break;
                 }
             }
@@ -59,7 +59,7 @@ public class IdDetector : MonoBehaviour
                 }
             }
             // All criteria is met
-            if (isAllGoodPairings && isNoBadPairings)
+            if (hasAGoodPairing && isNoBadPairings)
             {
                 DetectedObjects.Add(col.gameObject);
             }

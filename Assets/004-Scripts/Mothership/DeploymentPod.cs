@@ -10,7 +10,7 @@ public class DeploymentPod : MonoBehaviour
 
     [SerializeField] private Interactable interactable;
 
-    [SerializeField] private DroneTerminal MyDroneBay;
+    [SerializeField] private GameObject CrewPrefab;
     [SerializeField] private GameObject FighterPrefab;
     [SerializeField] private GameObject MinerPrefab;
     [SerializeField] private GameObject SatellitePrefab;
@@ -32,28 +32,29 @@ public class DeploymentPod : MonoBehaviour
         GameObject interactor = interactable.ActiveInteractors.Last();
         Identity identity = interactor.GetComponent<Identity>();
 
+        Debug.Log("Drone Bay interaction");
         if (identity.TagsKnownAs.Contains(Identification.Tags.Crew))
         {
             GameObject newDrone;
             if (DronePodType == DroneType.Fighter &&
-                MyDroneBay.FighterCount > 0)
+                GameManager.Mothership.FighterCount > 0)
             {
                 newDrone = Instantiate(FighterPrefab, DroneSpawn.position, DroneSpawn.rotation);
-                MyDroneBay.FighterCount--;
+                GameManager.Mothership.FighterCount--;
             }
 
             else if (DronePodType == DroneType.Miner &&
-                MyDroneBay.MinerCount > 0)
+                GameManager.Mothership.MinerCount > 0)
             {
                 newDrone = Instantiate(MinerPrefab, DroneSpawn.position, DroneSpawn.rotation);
-                MyDroneBay.MinerCount--;
+                GameManager.Mothership.MinerCount--;
             }
             
             else if (DronePodType == DroneType.Satellite &&
-                     MyDroneBay.SatelliteCount > 0)
+                     GameManager.Mothership.SatelliteCount > 0)
             {
                 newDrone = Instantiate(SatellitePrefab, DroneSpawn.position, DroneSpawn.rotation);
-                MyDroneBay.SatelliteCount--;
+                GameManager.Mothership.SatelliteCount--;
             }
             else
             {
@@ -61,34 +62,39 @@ public class DeploymentPod : MonoBehaviour
                 return;
             }
             Debug.Log("Deploying Drone!");
-            newDrone.GetComponent<DroneControl>().Pilot = interactor;
             newDrone.GetComponent<DroneMovement>().SetMomentum(
                 Proximity.DirectionToObject(gameObject, DroneSpawn.gameObject), 1f);
-            GameManager.Player.ReplaceOldWithNew(interactor, newDrone);
+            newDrone.GetComponent<DroneControl>().SetDroneColor(
+                interactor.GetComponent<CrewControl>().CrewColor);
+            
             interactable.Cancel(interactor);
+            GameManager.Player.ReplaceOldWithNew(interactor, newDrone);
             return;
         }
 
         if (identity.TagsKnownAs.Contains(Identification.Tags.Drone))
         {
             Debug.Log("Welcome aboard, Captain!");
-            GameObject dronePilot = interactor.GetComponent<DroneControl>().Pilot;
-            GameManager.Player.ReplaceOldWithNew(interactor, dronePilot);
-            dronePilot.transform.position = CrewSpawn.position;
+            GameObject newCrew = Instantiate(CrewPrefab, CrewSpawn.position, CrewSpawn.rotation);
+            newCrew.transform.position = CrewSpawn.position;
+            newCrew.GetComponent<CrewControl>().SetColor(
+                interactor.GetComponent<DroneControl>().DroneColor);
 
             if (identity.TagsKnownAs.Contains(Identification.Tags.Fighter))
             {
-                MyDroneBay.FighterCount++;
+                GameManager.Mothership.FighterCount++;
             }
             else if (identity.TagsKnownAs.Contains(Identification.Tags.Mining))
             {
-                MyDroneBay.MinerCount++;
+                GameManager.Mothership.MinerCount++;
             }
             else if (identity.TagsKnownAs.Contains(Identification.Tags.Satelite))
             {
-                MyDroneBay.SatelliteCount++;
+                GameManager.Mothership.SatelliteCount++;
             }
-            Destroy(interactor);
+            Debug.Log(interactor.name);
+            interactable.Cancel(interactor);
+            GameManager.Player.ReplaceOldWithNew(interactor, newCrew);
             return;
         }
         Debug.Log("Interactor is neither Crew or Drone");

@@ -6,7 +6,9 @@ public class CrewControl : MonoBehaviour
 {
     [SerializeField] private CrewInputHandler input;
 
+    public Color CrewColor = Color.white;
     public SpriteRenderer sprite;
+    
     public IdDetector interactableDetector;
     public Interactable currentInteraction;
     public CrewMovement crewMovement;
@@ -23,6 +25,7 @@ public class CrewControl : MonoBehaviour
 
     public void SetColor(Color newColor)
     {
+        CrewColor = newColor;
         sprite.color = newColor;
     }
 }

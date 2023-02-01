@@ -5,18 +5,28 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private GameObject door;
-    [SerializeField] private IdDetector detector;
+    [SerializeField] private GameObject Green;
+    [SerializeField] private GameObject Red;
+    [SerializeField] private IdDetector GreenZone;
+    [SerializeField] private IdDetector OpenZone;
     
     private void FixedUpdate()
     {
-        if (detector.DetectedObjects.Count > 0)
+        if (GreenZone.DetectedObjects.Count > 0)
         {
-            door.SetActive(false);
+            Red.SetActive(false);
+            if (OpenZone.DetectedObjects.Count > 0)
+            {
+                Green.SetActive(false);
+            }
+            else
+            {
+                Green.SetActive(true);
+            }
         }
         else
         {
-            door.SetActive(true);
+            Red.SetActive(true);
         }
     }
 }

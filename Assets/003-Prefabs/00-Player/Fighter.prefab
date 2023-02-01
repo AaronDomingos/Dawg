@@ -724,7 +724,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 2727666959977707765}
-  Pilot: {fileID: 0}
+  DroneColor: {r: 1, g: 1, b: 1, a: 1}
+  sprite: {fileID: 2727666959977707662}
   interactableDetector: {fileID: 7550073603427881780}
   currentInteraction: {fileID: 0}
   droneMovement: {fileID: 2727666959977707764}

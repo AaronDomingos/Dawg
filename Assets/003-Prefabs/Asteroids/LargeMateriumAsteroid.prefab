@@ -501,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40a86ab74c444d2ea5cf4916bc8571e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionZoneSprite: {fileID: 0}
   Detector: {fileID: 6518145908318208820}
   InteractionEvent:
     m_PersistentCalls:

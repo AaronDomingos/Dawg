@@ -1,50 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
+using UnityEngine.Rendering.PostProcessing;
 
 public class DroneTerminal : MonoBehaviour
 {
     [SerializeField] private Interactable interactable;
     [SerializeField] private Canvas DroneBayCanvas;
+    
+    [SerializeField] private TextMeshProUGUI FighterTxt;
+    [SerializeField] private TextMeshProUGUI FighterCostTxt;
+    [SerializeField] private TextMeshProUGUI MinerTxt;
+    [SerializeField] private TextMeshProUGUI MinerCostTxt;
+    [SerializeField] private TextMeshProUGUI SatelliteTxt;
+    [SerializeField] private TextMeshProUGUI SatelliteCostTxt;
 
     private bool inMenu = false;
     private GameObject Activator = null;
-
-
-    public int FighterCount = 1;
-    public float FighterCost = 240;
-    public float FighterProgress = 0;
-    public List<GameObject> FighterBuilders = new List<GameObject>();
-
-    public int MinerCount = 1;
-    public float MinerCost = 240;
-    public float MinerProgress = 0;
-    public List<GameObject> MinerBuilders = new List<GameObject>();
-
-    public int SatelliteCount = 1;
-    public float SatelliteCost = 240;
-    public float SatelliteProgress = 0;
-    public List<GameObject> SatelliteBuilders = new List<GameObject>();
-
-    public float BuildPerSec = 1;
+    
+    public int FighterCost = 250;
+    public int MinerCost = 0;
+    public int SatelliteCost = 100;
 
 
     private void FixedUpdate()
     {
-        HandleBuilding();
-    }
+        FighterTxt.text = Convert.ToString(GameManager.Mothership.FighterCount);
+        FighterCostTxt.color = (GameManager.Mothership.Materium < FighterCost) ? Color.red : Color.white;
 
-    private void HandleBuilding()
-    {
-        FighterProgress += BuildPerSec * FighterBuilders.Count * Time.fixedDeltaTime;
-        if (FighterProgress >= FighterCost) { FighterCount++; FighterProgress = 0; }
-
-        MinerProgress += BuildPerSec * MinerBuilders.Count * Time.fixedDeltaTime;
-        if (MinerProgress >= MinerCost) { MinerCount++; MinerProgress = 0; }
-
-        SatelliteProgress += BuildPerSec * SatelliteBuilders.Count * Time.fixedDeltaTime;
-        if (SatelliteProgress >= SatelliteCost) { SatelliteCount++; SatelliteProgress = 0; }
+        MinerTxt.text = Convert.ToString(GameManager.Mothership.MinerCount);
+        MinerCostTxt.color = (GameManager.Mothership.Materium < MinerCost) ? Color.red : Color.white;
+        
+        SatelliteTxt.text = Convert.ToString(GameManager.Mothership.SatelliteCount);
+        SatelliteCostTxt.color = (GameManager.Mothership.Materium < SatelliteCost) ? Color.red : Color.white;
     }
 
 
@@ -62,40 +53,50 @@ public class DroneTerminal : MonoBehaviour
 
     public void AwaitResponse(int selection)
     {
-        switch (selection)
+        if (Activator != null && Activator == GameManager.Player.ActivePlayable)
         {
-            case 0:
-                FighterBuilders.Add(Activator);
-                break;
-            case 1:
-                MinerBuilders.Add(Activator);
-                break;
-            case 2:
-                SatelliteBuilders.Add(Activator);
-                break;
+            switch (selection)
+            {
+                case 0:
+                    if (GameManager.Mothership.Materium >= FighterCost)
+                    {
+                        GameManager.Mothership.FighterCount++;
+                        GameManager.Mothership.Materium -= FighterCost;
+                    }
+                    break;
+                case 1:
+                    if (GameManager.Mothership.Materium >= MinerCost)
+                    {
+                        GameManager.Mothership.MinerCount++;
+                        GameManager.Mothership.Materium -= MinerCost;
+                    }
+                    break;
+                case 2:
+                    if (GameManager.Mothership.Materium >= SatelliteCost)
+                    {
+                        GameManager.Mothership.SatelliteCount++;
+                        GameManager.Mothership.Materium -= SatelliteCost;
+                    }
+                    break;
+            }
         }
-        CloseMenu();
     }
 
     public void CancelInteraction()
     {
-        FighterBuilders.Remove(Activator);
-        MinerBuilders.Remove(Activator);
-        SatelliteBuilders.Remove(Activator);
         SetCrewMovement(Activator, true);
         CloseMenu();
+        Activator = null;
     }
 
     private void OpenMenu()
     {
-        GameManager.Player.CanvasUI.SetActive(false);
         DroneBayCanvas.gameObject.SetActive(true);
         GameManager.Player.CanToggle = false;
     }
 
     private void CloseMenu()
     {
-        GameManager.Player.CanvasUI.SetActive(true);
         DroneBayCanvas.gameObject.SetActive(false);
         GameManager.Player.CanToggle = true;
     }

@@ -8,19 +8,13 @@ using UnityEngine.XR;
 public class Turret : MonoBehaviour
 {
     [SerializeField] private Interactable interactable;
-    [SerializeField] private Canvas WeaponSelectionMenu;
+    
     [SerializeField] private IdDetector TurretDetection;
+    [SerializeField] private ShotWeapon TurretWeapon;
 
     [SerializeField] private Transform RotatingParent;
     [SerializeField] private Transform StaticParent;
-    
-    [SerializeField] private GameObject BulletWeaponObject;
-    //[SerializeField] private BulletWeapon BulletWeaponScript;
-    [SerializeField] private GameObject LaserWeaponObject;
-    [SerializeField] private LaserWeapon LaserWeaponScript;
-    [SerializeField] private GameObject RocketWeaponObject;
-    [SerializeField] private RocketWeapon RocketWeaponScript;
-    
+
     [SerializeField] private GameObject FakeCrew;
     [SerializeField] private Transform CameraTarget;
     
@@ -30,67 +24,34 @@ public class Turret : MonoBehaviour
     private bool inMenu = false;
     private bool isActivated = false;
     private GameObject Activator = null;
-    private WeaponType ActiveWeapon = WeaponType.None;
 
     public float ZRot;
-
-    private enum WeaponType
-    {
-        None = 0,
-        Bullet = 1,
-        Laser = 2,
-        Rocket = 3
-    }
 
     private void FixedUpdate()
     {
         if (isActivated)
         {
-            switch (ActiveWeapon)
-            {
-                case WeaponType.None:
-                    break;
-                case WeaponType.Bullet:
-                    //HandleWeapon(BulletWeaponObject, BulletWeaponScript);
-                    break;
-                case WeaponType.Laser:
-                    HandleWeapon(LaserWeaponObject, LaserWeaponScript);
-                    break;
-                case WeaponType.Rocket:
-                    HandleWeapon(RocketWeaponObject, RocketWeaponScript);
-                    break;
-            }
+            HandleWeapon();
         }
     }
 
-    private void HandleWeapon(GameObject obj, Weapon weapon)
+    private void HandleWeapon()
     {
         if (TurretDetection.DetectedObjects.Count > 0)
         {
             GameObject closestTarget = Proximity.NearestGameObject(
                 gameObject, TurretDetection.DetectedObjects);
-
             RotatingParent.rotation = Orientation.QuarternionFromAToB(
                 RotatingParent, closestTarget.transform.position, RotationSpeed);
 
-            if (ActiveWeapon == WeaponType.Laser)
-            {
-                weapon.TryFire(RotatingParent.position + RotatingParent.up * 100);
-            }
-            else
-            {
-                weapon.TryFire(Orientation.DirectionToVector(RotatingParent.position, RotatingParent.up * 100));
-                //weapon.TryFire(Proximity.DirectionToObject(RotatingParent.gameObject, closestTarget));
-            }
+            TurretWeapon.TryFire();
         }
+    }
 
-        else
-        {
-            if (ActiveWeapon == WeaponType.Laser)
-            {
-                LaserWeaponScript.DeactivateLaser();
-            }
-        }
+    private void ChangeColor()
+    {
+        FakeCrew.GetComponent<SpriteRenderer>().color = 
+            Activator.GetComponent<CrewControl>().CrewColor;
     }
 
     public void OnInteract()
@@ -100,72 +61,23 @@ public class Turret : MonoBehaviour
         SetCrewMovement(Activator, false);
         
         Activator.GetComponent<CrewControl>().sprite.enabled = false;
+        TurretWeapon.gameObject.SetActive(true);
         FakeCrew.SetActive(true);
         
         EnableCameraTarget();
-        OpenMenu();
+        ChangeColor();
     }
 
     public void OnCancel()
     {
         RotatingParent.rotation = StaticParent.rotation;
         Activator.GetComponent<CrewControl>().sprite.enabled = true;
+        TurretWeapon.gameObject.SetActive(false);
         FakeCrew.SetActive(false);
         
         SetCrewMovement(Activator, true);
         DisableCameraTarget();
-        CloseMenu();
-        
-        DeactivateWeapons();
         isActivated = false;
-        ActiveWeapon = WeaponType.None;
-    }
-
-    public void ActivateWeapon(int weapon)
-    {
-        DeactivateWeapons();
-        switch (weapon)
-        {
-            case 0:
-                isActivated = false;
-                ActiveWeapon = WeaponType.None;
-                break;
-            case 1:
-                isActivated = true;
-                ActiveWeapon = WeaponType.Bullet;
-                BulletWeaponObject.SetActive(true);
-                break;
-            case 2:
-                isActivated = true;
-                ActiveWeapon = WeaponType.Laser;
-                LaserWeaponObject.SetActive(true);
-                break;
-            case 3:
-                isActivated = true;
-                ActiveWeapon = WeaponType.Rocket;
-                RocketWeaponObject.SetActive(true);
-                break;
-        }
-        CloseMenu();
-    }
-
-    private void DeactivateWeapons()
-    {
-        BulletWeaponObject.SetActive(false);
-        LaserWeaponObject.SetActive(false);
-        RocketWeaponObject.SetActive(false);
-    }
-    
-    private void OpenMenu()
-    {
-        WeaponSelectionMenu.gameObject.SetActive(true);
-        GameManager.Player.CanToggle = false;
-    }
-
-    private void CloseMenu()
-    {
-        WeaponSelectionMenu.gameObject.SetActive(false);
-        GameManager.Player.CanToggle = true;
     }
 
     private void EnableCameraTarget()
