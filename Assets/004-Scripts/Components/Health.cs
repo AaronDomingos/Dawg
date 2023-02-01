@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public float CurrentHealth = 5;
     public float MaxHealth = 5;
+    public Slider slider;
 
     public Status CurrentStatus = Status.Healthy;
     private Status PreviousStatus = Status.Healthy;
@@ -59,6 +61,7 @@ public class Health : MonoBehaviour
     {
         if (CurrentHealth > MaxHealth) { CurrentHealth = MaxHealth; }
         if (CurrentHealth < 0) { CurrentHealth = 0; }
+        SetHealth(CurrentHealth);
         AdjustStatus();
     }
 
@@ -112,5 +115,8 @@ public class Health : MonoBehaviour
             }
         }
         PreviousStatus = CurrentStatus;
+    }
+    public void SetHealth(float health){
+        slider.value = health;
     }
 }
