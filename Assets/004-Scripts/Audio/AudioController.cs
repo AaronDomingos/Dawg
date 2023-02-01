@@ -14,13 +14,9 @@ public class AudioController : MonoBehaviour
 
     [SerializeField] private AudioMixer mixer;
 
+
+    public AudioClip Background1;
     public AudioClip Interaction;
-    
-    
-    
-    
-    
-    
     
 
     public void PlayGuiEffect(AudioClip audioClip)
@@ -39,6 +35,12 @@ public class AudioController : MonoBehaviour
     {
         playerEffectsSource.clip = audioClip;
         playerEffectsSource.Play();
+    }
+
+    public void PlayMusicClip(AudioClip audioClip)
+    {
+        musicSource.clip = audioClip;
+        musicSource.Play();
     }
 
     private void Awake()

@@ -12,7 +12,7 @@ public class Door : MonoBehaviour
 
     [SerializeField] private AudioSource audio;
     [SerializeField] private AudioClip clip;
-    private bool isPlaying = false;
+    private bool isPlaying = true;
 
     private void FixedUpdate()
     {

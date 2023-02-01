@@ -20,7 +20,7 @@ public class Fighter : DroneControl
     
     private void FixedUpdate()
     {
-        if (IsAuto) {TryPrimaryWeapon();}
+        //if (IsAuto) {TryPrimaryWeapon();}
         
         if (MateriumDetector.DetectedObjects.Count > 0)
         {
