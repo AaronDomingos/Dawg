@@ -9,6 +9,7 @@ public class Fighter : DroneControl
 
     public IdDetector MateriumDetector;
     
+    
     [SerializeField] private ShotWeapon HeavyShooter;
     [SerializeField] private ShotWeapon SmallShooterA;
     [SerializeField] private ShotWeapon SmallShooterB;

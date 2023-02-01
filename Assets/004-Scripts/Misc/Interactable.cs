@@ -119,6 +119,8 @@ public class Interactable : MonoBehaviour
             ActiveInteractors.Add(interactor);
             if (InteractionEvent != null)
             {
+                // AudioController.singleton.PlayGuiEffect(
+                //     AudioController.singleton.Interaction);
                 InteractionEvent.Invoke();
                 return;
             }

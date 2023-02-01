@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShotWeapon : MonoBehaviour
 {
+
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip clip;
+    
     [SerializeField] private Shot.ShotType WeaponShotType;
     
     [SerializeField] private List<Identification.Tags> TagsToCollide = 
@@ -52,6 +56,7 @@ public class ShotWeapon : MonoBehaviour
                 newShot.GetComponent<Shot>().Init(TagsToCollide, TagsToDamage,
                     Origin, WeaponShotType, Duration, Damage, Speed, IsTracking, RotationSpeed);
                 StartCoroutine(CooldownTimer());
+                audio.PlayOneShot(clip);
             }
         }
     }

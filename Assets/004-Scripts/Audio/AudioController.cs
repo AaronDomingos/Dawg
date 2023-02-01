@@ -14,6 +14,15 @@ public class AudioController : MonoBehaviour
 
     [SerializeField] private AudioMixer mixer;
 
+    public AudioClip Interaction;
+    
+    
+    
+    
+    
+    
+    
+
     public void PlayGuiEffect(AudioClip audioClip)
     {
         guiEffectsSource.clip = audioClip;

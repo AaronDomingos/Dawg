@@ -9,7 +9,11 @@ public class Door : MonoBehaviour
     [SerializeField] private GameObject Red;
     [SerializeField] private IdDetector GreenZone;
     [SerializeField] private IdDetector OpenZone;
-    
+
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip clip;
+    private bool isPlaying = false;
+
     private void FixedUpdate()
     {
         if (GreenZone.DetectedObjects.Count > 0)
@@ -18,6 +22,11 @@ public class Door : MonoBehaviour
             if (OpenZone.DetectedObjects.Count > 0)
             {
                 Green.SetActive(false);
+                if (!isPlaying)
+                {
+                    isPlaying = true;
+                    audio.PlayOneShot(clip);
+                }
             }
             else
             {
@@ -27,6 +36,7 @@ public class Door : MonoBehaviour
         else
         {
             Red.SetActive(true);
+            isPlaying = false;
         }
     }
 }
