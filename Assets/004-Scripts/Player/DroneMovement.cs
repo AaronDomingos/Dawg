@@ -22,14 +22,8 @@ public class DroneMovement : MonoBehaviour
     private void FixedUpdate()
     {
         HandleMomentum();
-        if (RightStick == Vector3.zero)
-        {
-            DefaultRotation();
-        }
-        else
-        {
-            RightStickRotation();
-        }
+        DefaultRotation();
+        RightStickRotation();
     }
 
     public void SetCanMove(bool value)
@@ -78,18 +72,20 @@ public class DroneMovement : MonoBehaviour
 
     private void RightStickRotation()
     {
-        Quaternion toRotate = Quaternion.LookRotation(
-            Vector3.forward, RightStick);
-        transform.rotation = Quaternion.RotateTowards(
-            transform.rotation, toRotate, RotateSpeed * Time.fixedDeltaTime);
+        // Quaternion toRotate = Quaternion.LookRotation(
+        //     Vector3.forward, RightStick * 100);
+        // transform.rotation = Quaternion.RotateTowards(
+        //     transform.rotation, toRotate, RotateSpeed * Time.fixedDeltaTime);
 
-        // foreach (Transform obj in ThingsToRotate)
-        // {
-        //     Quaternion toRotate = Quaternion.LookRotation(
-        //         Vector3.zero, RightStick);
-        //     obj.rotation = Quaternion.RotateTowards(
-        //         transform.rotation, toRotate, RotateSpeed * Time.fixedDeltaTime);
-        // }
+        foreach (Transform obj in ThingsToRotate)
+        {
+            obj.rotation = Orientation.QuarternionFromAToB(obj, RightStick * 10000, 5);
+            //
+            // Quaternion toRotate = Quaternion.(
+            //     obj, RightStick)
+            // obj.rotation = Quaternion.RotateTowards(
+            //     transform.rotation, toRotate, RotateSpeed * Time.fixedDeltaTime);
+        }
     }
 
     public void SetDirection(Vector3 direction)

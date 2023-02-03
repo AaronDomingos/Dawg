@@ -33,6 +33,10 @@ public class DroneControl : MonoBehaviour
     public void SetRotationTarget(Vector3 direction)
     {
         droneMovement.SetRotation(direction);
+        if (direction != null && direction != Vector3.zero)
+        {
+            TryPrimaryWeapon();
+        }
     }
 
     public virtual void TryPrimaryWeapon()

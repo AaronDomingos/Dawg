@@ -27,10 +27,20 @@ public class Turret : MonoBehaviour
 
     public float ZRot;
 
+    private void Start()
+    {
+        RotatingParent.rotation = StaticParent.rotation;
+    }
+    
+    
     private void FixedUpdate()
     {
         if (isActivated)
         {
+            if (Activator == GameManager.Player.ActivePlayable)
+            {
+                //Vector3 rotation = Activator.GetComponent<CrewControl>().
+            }
             HandleWeapon();
         }
     }

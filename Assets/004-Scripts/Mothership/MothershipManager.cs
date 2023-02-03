@@ -7,6 +7,7 @@ using UnityEngine;
 public class MothershipManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI MateriumTxt;
+    [SerializeField] private TextMeshProUGUI SurvivorTxt;
     
     
     
@@ -24,5 +25,6 @@ public class MothershipManager : MonoBehaviour
     private void FixedUpdate()
     {
         MateriumTxt.text = Convert.ToString(Materium);
+        SurvivorTxt.text = Convert.ToString(Survivors);
     }
 }
