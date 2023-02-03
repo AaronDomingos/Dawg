@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Com.LuisPedroFonseca.ProCamera2D;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -16,9 +17,7 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject CanvasUI;
     public GameObject RadarUI;
-    public GameObject TopBarUI;
-    public GameObject LeftControlsUI;
-    public GameObject RightControlsUI;
+    public TextMeshProUGUI PlayerIndexDisplay;
 
     public float CrewZoom = 6;
     public float DroneZoom = 15;
@@ -163,6 +162,7 @@ public class PlayerManager : MonoBehaviour
         
         proCamera.RemoveAllCameraTargets();
         proCamera.AddCameraTarget(ActivePlayable.transform);
+        PlayerIndexDisplay.text = Convert.ToString(index + 1);
 
         Identity identity = ActivePlayable.GetComponent<Identity>();
         if (identity.TagsKnownAs.Contains(Identification.Tags.Crew))

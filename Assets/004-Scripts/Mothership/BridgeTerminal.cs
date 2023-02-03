@@ -50,7 +50,8 @@ public class BridgeTerminal : MonoBehaviour
                 RadarOperators.Add(Activator);
                 break;
             case 1:
-                if (GameManager.Mothership.WarpDrive >= GameManager.Mothership.RequiredToJump)
+                if (GameManager.Mothership.EngineHealth.CurrentHealth >=
+                    GameManager.Mothership.EngineHealth.MaxHealth)
                 {
                     Debug.Log("Handle Win!");
                 }
