@@ -30,7 +30,7 @@ public class Hivemind : MonoBehaviour
     [SerializeField] private GameObject SwarmPrefab;
     public static List<Swarm> AllSwarms = new List<Swarm>();
     public static float SwarmRange = 100;
-
+    
 
     private void Awake()
     {
@@ -58,33 +58,10 @@ public class Hivemind : MonoBehaviour
 
     private void OpenWarpGates()
     {
-        Vector3 spawnPoint = (Random.insideUnitCircle.normalized * 175) + 
-                             (Random.insideUnitCircle.normalized * 25);
-
-        GameObject newWarpGate = WarpGatePool.GetInstance(spawnPoint, Quaternion.identity);
-        newWarpGate.GetComponent<WarpGate>().Init();
-    }
-    
-
-    public static Swarm FindClosestSwarm(GameObject swarmling)
-    {
-        // Order by proximity
-        if (true)
-        {
-            return null;
-        }
-        
-        // else
-        // {
-        //     return CreateNewSwarm(swarmling.transform.position);
-        // }
-    }
-
-    private static Swarm CreateNewSwarm(Vector3 position)
-    {
-        GameObject newSwarm = SwarmPool.GetInstance(
-            position, Quaternion.identity);
-        newSwarm.name = "Swarm";
-        return newSwarm.GetComponent<Swarm>();
+        // Vector3 spawnPoint = (Random.insideUnitCircle.normalized * 175) + 
+        //                      (Random.insideUnitCircle.normalized * 25);
+        //
+        // GameObject newWarpGate = WarpGatePool.GetInstance(spawnPoint, Quaternion.identity);
+        // newWarpGate.GetComponent<WarpGate>().Init();
     }
 }

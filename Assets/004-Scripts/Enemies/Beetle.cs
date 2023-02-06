@@ -7,26 +7,22 @@ public class Beetle : Swarmling
     [SerializeField] private IdDetector HuntingZone;
     [SerializeField] private IdDetector BiteZone;
     [SerializeField] private MeleeWeapon Bite;
-
-    [SerializeField] private IdDetector ThornsZone;
-    [SerializeField] private MeleeWeapon Thorns;
-
     [SerializeField] private IdDetector SpitZone;
     [SerializeField] private ShotWeapon Spit;
-
     [SerializeField] private IdDetector FartZone;
     [SerializeField] private MeleeWeapon Fart;
-
-
-    [SerializeField] private EnemyMovement Movement;
+    
     [SerializeField] private Health Health;
 
     private string BeetleName = "Beetle";
 
     private bool IsAttached = false;
 
-    public void Init()
+    public void Init(Swarm swarm)
     {
+        MySwarm = swarm;
+        MySwarm.Swarmlings.Add(this);
+        
         Health.Init(Hivemind.BeetleHealth);
         Movement.MaximumSpeed = Hivemind.BeetleSpeed;
         Bite.Damage = Hivemind.BeetleBiteDamage;
@@ -43,13 +39,14 @@ public class Beetle : Swarmling
 
     private void FixedUpdate()
     {
-        HandleMySwarm();
         HandleMovement();
-        HandleMandibles();
+        //HandleMandibles();
     }
 
     private void HandleMovement()
     {
+        return;
+        
         // If Hunting
         if (HuntingZone.DetectedObjects.Count > 0)
         {
@@ -106,6 +103,9 @@ public class Beetle : Swarmling
     
     private void OnStatusDestroy()
     {
+        MySwarm.Swarmlings.Remove(this);
+        MySwarm = null;
+        
         Hivemind.GnatPool.Deactivate(gameObject);
     }
     

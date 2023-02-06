@@ -6,19 +6,17 @@ using UnityEngine;
 
 public class Gnat : Swarmling
 {
-    [SerializeField] private IdDetector AvoidanceZone;
     [SerializeField] private IdDetector HuntingZone;
     [SerializeField] private IdDetector BiteZone;
     [SerializeField] private MeleeWeapon Bite;
-
-
-    [SerializeField] private EnemyMovement Movement;
     [SerializeField] private Health Health;
-
+    
     private string GnatName = "Gnat";
 
-    public void Init()
+    public void Init(Swarm swarm)
     {
+        MySwarm = swarm;
+        MySwarm.Swarmlings.Add(this);
         Health.Init(Hivemind.GnatHealth);
         Movement.MaximumSpeed = Hivemind.GnatSpeed;
         Bite.Damage = Hivemind.GnatBiteDamage;
@@ -28,27 +26,24 @@ public class Gnat : Swarmling
     {
         gameObject.name = GnatName;
         transform.SetParent(Hivemind.GnatPool.transform);
-        
     }
 
     private void FixedUpdate()
     {
-        HandleMySwarm();
         HandleMovement();
         HandleMandibles();
     }
 
     private void HandleMovement()
     {
-        // If needs to avoid something
-        if (AvoidanceZone.DetectedObjects.Count > 0)
+        // If there's a player in the swarm's radius
+        if (MySwarm.InDanger)
         {
-            GameObject closestObject = Proximity.NearestGameObject(
-                gameObject, AvoidanceZone.DetectedObjects);
-            
-            Movement.StrafeAwayFrom(closestObject.transform);
+            Movement.MoveTowards(MySwarm.TargetPosition.transform.position);
             return;
         }
+        
+        // Gnats don't avoid things.
         
         // If Hunting
         if (HuntingZone.DetectedObjects.Count > 0)
@@ -62,11 +57,11 @@ public class Gnat : Swarmling
 
         if (MySwarm != null)
         {
-            HandleSwarmMovement();
+            Movement.MoveTowards(MySwarm.TargetPosition.transform.position);
             return;
         }
         
-        // Default to mothership
+        // Default to stay still
         Movement.StayStill();
     }
 
@@ -80,6 +75,8 @@ public class Gnat : Swarmling
 
     private void OnStatusDestroy()
     {
+        MySwarm.Swarmlings.Remove(this);
+        MySwarm = null;
         Hivemind.GnatPool.Deactivate(gameObject);
     }
 }

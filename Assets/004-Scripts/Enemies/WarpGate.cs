@@ -7,53 +7,55 @@ using Random = UnityEngine.Random;
 public class WarpGate : MonoBehaviour
 {
 
-
-    public SpawnWeights spawnWeights = new SpawnWeights(10, 4, 1);
-
-    public class SpawnWeights
-    {
-        public int GnatWeight;
-        public int WaspWeight;
-        public int BeetleWeight;
-        public int Total;
-
-        public SpawnWeights(int gnat, int wasp, int beetle)
-        {
-            GnatWeight = gnat;
-            WaspWeight = wasp;
-            BeetleWeight = beetle;
-            Total = gnat + wasp + beetle;
-        }
-    }
+    public Swarm SpawningSwarm;
     
+
     private void Start()
     {
-        //InvokeRepeating("SpawnRandom", 1, 5);
+        //StartSpawningWaves();
     }
 
-    public void Init()
+    public void Init(Swarm spawningSwarm)
     {
         transform.rotation = Orientation.QuarternionFromAToB(
             transform, Vector3.zero, 1000f);
-        InvokeRepeating("SpawnRandom", 1, 5);
+
+        SpawningSwarm = spawningSwarm;
     }
 
-
-    public void SpawnRandom()
+    public void StartSpawningWaves()
     {
-        int randomEnemy = Random.Range(1, spawnWeights.Total);
+        //InvokeRepeating("SpawnNextWave", 5f, 5f);
+    }
 
-        if (randomEnemy < spawnWeights.GnatWeight)
+    public void SpawnWave(Swarm.Wave wave)
+    {
+        Debug.Log("Spawning new wave!");
+        Debug.Log(wave.Gnats + ", " + wave.Wasps + ", " + wave.Beetles);
+        if (Hivemind.GnatPool.EnabledObjects.Count + wave.Gnats < Hivemind.GnatPool.MaxQuantity)
         {
-            SpawnGnat();
-            return;
+            for (int i = 0; i < wave.Gnats; i++)
+            {
+                Invoke("SpawnGnat",
+                    (Convert.ToSingle(i) / Convert.ToSingle(wave.Gnats)) * wave.TimeToSpawn);
+            }
         }
-        if (randomEnemy < spawnWeights.GnatWeight + spawnWeights.WaspWeight)
+        if (Hivemind.WaspPool.EnabledObjects.Count + wave.Wasps < Hivemind.WaspPool.MaxQuantity)
         {
-            SpawnWasp();
-            return;
+            for (int i = 0; i < wave.Wasps; i++)
+            {
+                Invoke("SpawnWasp",
+                    (Convert.ToSingle(i) / Convert.ToSingle(wave.Wasps)) * wave.TimeToSpawn);
+            }
         }
-        SpawnBeetle();
+        if (Hivemind.BeetlePool.EnabledObjects.Count + wave.Beetles < Hivemind.BeetlePool.MaxQuantity)
+        {
+            for (int i = 0; i < wave.Beetles; i++)
+            {
+                Invoke("SpawnBeetle",
+                    (Convert.ToSingle(i) / Convert.ToSingle(wave.Beetles)) * wave.TimeToSpawn);
+            }
+        }
     }
 
     private void SpawnGnat()
@@ -62,7 +64,7 @@ public class WarpGate : MonoBehaviour
             transform.position, transform.rotation);
         if (newGnat != null)
         {
-            newGnat.GetComponent<Gnat>().Init();
+            newGnat.GetComponent<Gnat>().Init(SpawningSwarm);
         }
     }
 
@@ -72,7 +74,7 @@ public class WarpGate : MonoBehaviour
             transform.position, transform.rotation);
         if (newWasp != null)
         {
-            newWasp.GetComponent<Wasp>().Init();
+            newWasp.GetComponent<Wasp>().Init(SpawningSwarm);
         }
     }
 
@@ -82,10 +84,9 @@ public class WarpGate : MonoBehaviour
             transform.position, transform.rotation);
         if (newBeetle != null)
         {
-            newBeetle.GetComponent<Beetle>().Init();
+            newBeetle.GetComponent<Beetle>().Init(SpawningSwarm);
         }
     }
-
 
     private void Deactivate()
     {

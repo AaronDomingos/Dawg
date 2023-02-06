@@ -9,11 +9,8 @@ public class Wasp : Swarmling
     [SerializeField] private IdDetector HuntingZone;
     [SerializeField] private IdDetector BiteZone;
     [SerializeField] private MeleeWeapon Bite;
-
     [SerializeField] private IdDetector SpitZone;
     [SerializeField] private ShotWeapon Spit;
-    
-    [SerializeField] private EnemyMovement Movement;
     [SerializeField] private Health Health;
 
     private string WaspName = "Wasp";
@@ -24,8 +21,11 @@ public class Wasp : Swarmling
     private float CurrentMaterium = 0;
     private float RequiredMaterium = 20;
 
-    public void Init()
+    public void Init(Swarm swarm)
     {
+        MySwarm = swarm;
+        MySwarm.Swarmlings.Add(this);
+        
         Health.Init(Hivemind.WaspHealth);
         Movement.MaximumSpeed = Hivemind.WaspSpeed;
         Bite.Damage = Hivemind.WaspBiteDamage;
@@ -41,7 +41,6 @@ public class Wasp : Swarmling
 
     private void FixedUpdate()
     {
-        HandleMySwarm();
         HandleMovement();
         HandleMandibles();
         HandleSpitter();
@@ -49,6 +48,16 @@ public class Wasp : Swarmling
 
     private void HandleMovement()
     {
+        if (MySwarm.InDanger)
+        {
+            if (IsAttached)
+            {
+                DetachFromObject(transform.parent);
+            }
+            Movement.MoveTowards(MySwarm.TargetPosition.transform.position);
+            return;
+        }
+        
         if (IsAttached)
         {
             return;
@@ -73,17 +82,11 @@ public class Wasp : Swarmling
             Movement.MoveTowards(closestTarget.transform.position);
             return;
         }
-
-        // If Asteroid in Range
-        if (true )
-        {
-            return;
-        }
         
         // Swarm Actions
         if (MySwarm != null)
         {
-            HandleSwarmMovement();
+            Movement.MoveTowards(MySwarm.TargetPosition.transform.position);
             return;
         }
         Movement.StayStill();
@@ -93,14 +96,14 @@ public class Wasp : Swarmling
     {
         if (BiteZone.DetectedObjects.Count > 0)
         {
-            if (BiteZone.DetectedObjects[0].TryGetComponent(out Asteroid asteroid))
+            if (!IsAttached)
             {
-                if (!IsAttached)
+                if (BiteZone.DetectedObjects[0].TryGetComponent(out Asteroid asteroid))
                 {
                     AttachToObject(asteroid.transform);
+                    HarvestMaterium();
+                    return;
                 }
-                HarvestMaterium();
-                return;
             }
             Bite.TryMelee();
         }
@@ -141,6 +144,9 @@ public class Wasp : Swarmling
     
     private void OnStatusDestroy()
     {
+        MySwarm.Swarmlings.Remove(this);
+        MySwarm = null;
+        
         Hivemind.GnatPool.Deactivate(gameObject);
     }
 }

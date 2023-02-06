@@ -322,14 +322,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6472416684206102259}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -348,9 +348,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.1}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &6472416684206102260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eaca3d7ce6d2495a8a2ef5b646e0310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TagsKnownAs: 0a000000
+  TagsKnownAs: 0a0000000b000000
 --- !u!114 &6680446183653105043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,11 +377,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MySwarm: {fileID: 0}
-  AvoidanceZone: {fileID: 0}
+  Movement: {fileID: 6472416684206102261}
   HuntingZone: {fileID: 1499423779560269146}
   BiteZone: {fileID: 1499423778986264191}
   Bite: {fileID: 4723822337307584639}
-  Movement: {fileID: 6472416684206102261}
   Health: {fileID: 7003193045130811019}
 --- !u!114 &6472416684206102261
 MonoBehaviour:
@@ -526,7 +525,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900457, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4a86df371674671a6cda61e5c753d6, type: 3}
@@ -653,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900456, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_Radius
-      value: 1.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900457, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}

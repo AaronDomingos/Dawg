@@ -9,6 +9,8 @@ public class Swarmling : MonoBehaviour
     private bool ShouldCheckSwarm = true;
     private float SwarmCheckCooldown = 5f;
 
+    public EnemyMovement Movement;
+
     private void OnEnable()
     {
         ShouldCheckSwarm = true;
@@ -22,18 +24,9 @@ public class Swarmling : MonoBehaviour
     public void HandleSwarmMovement()
     {
         Debug.Log("Swarm Movement Requested");
+        Movement.MoveTowards(MySwarm.TargetPosition.transform.position);
     }
-    
-    public void HandleMySwarm()
-    {
-        if (ShouldCheckSwarm)
-        {
-            MySwarm = Hivemind.FindClosestSwarm(gameObject);
-            StartCoroutine("CooldownTimer");
-            ShouldCheckSwarm = false;
-        }
-    }
-    
+
     public IEnumerator CooldownTimer()
     {
         ShouldCheckSwarm = false;
