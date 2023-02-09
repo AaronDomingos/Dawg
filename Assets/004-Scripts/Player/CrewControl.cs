@@ -13,6 +13,8 @@ public class CrewControl : MonoBehaviour
     public Interactable currentInteraction;
     public CrewMovement crewMovement;
 
+    public Animator animator;
+
     private void Update()
     {
         input.Handle();
@@ -21,6 +23,22 @@ public class CrewControl : MonoBehaviour
     public void ApplyWalk(Vector3 direction)
     {
         crewMovement.SetDirection(direction);
+        if (direction == Vector3.zero || crewMovement.CanMove == false)
+        {
+            animator.SetBool("IsMoving", false);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", true);
+            if (direction.x > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            if (direction.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+        }
     }
 
     public void SetColor(Color newColor)

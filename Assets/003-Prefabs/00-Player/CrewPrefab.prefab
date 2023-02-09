@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6124248068628155860}
   - component: {fileID: -6776138924489593269}
   - component: {fileID: -4522452944014685370}
+  - component: {fileID: -1984984285017341402}
   m_Layer: 0
   m_Name: CrewPrefab
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,9 +125,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.2}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
 --- !u!114 &-3260884746070179984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +146,7 @@ MonoBehaviour:
   interactableDetector: {fileID: 6810632830235394797}
   currentInteraction: {fileID: 0}
   crewMovement: {fileID: -6776138924489593269}
+  animator: {fileID: -1984984285017341402}
 --- !u!114 &6124248068628155860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +188,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TagsKnownAs: 0000000001000000
+--- !u!95 &-1984984285017341402
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5479678095852904664}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0eda770cde1c744fc80d619c9440fd66, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1412330575448469370
 PrefabInstance:
   m_ObjectHideFlags: 0
