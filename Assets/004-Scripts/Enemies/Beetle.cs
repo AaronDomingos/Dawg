@@ -40,11 +40,12 @@ public class Beetle : Swarmling
     private void FixedUpdate()
     {
         HandleMovement();
-        //HandleMandibles();
+        HandleMandibles();
     }
 
     private void HandleMovement()
     {
+        Movement.MoveTowards(Vector3.zero);
         return;
         
         // If Hunting
@@ -76,18 +77,18 @@ public class Beetle : Swarmling
     {
         if (BiteZone.DetectedObjects.Count > 0)
         {
-            if (BiteZone.DetectedObjects[0])
+            if (BiteZone.DetectedObjects[0].TryGetComponent(out Identity identity) && 
+                identity.TagsKnownAs.Contains(Identification.Tags.Mothership))
             {
-                
+                Movement.StopMovement();
+                if (Bite.ManualTryMelee())
+                {
+                    GameManager.Mothership.MothershipHealth.Damage(Bite.Damage);
+                    return;
+                }
             }
-
             Bite.TryMelee();
         }
-    }
-
-    private void AttachToObject(Transform target)
-    {
-        
     }
 
     private void OnStatusDamaged()
@@ -106,7 +107,6 @@ public class Beetle : Swarmling
         MySwarm.Swarmlings.Remove(this);
         MySwarm = null;
         
-        Hivemind.GnatPool.Deactivate(gameObject);
+        Hivemind.BeetlePool.Deactivate(gameObject);
     }
-    
 }

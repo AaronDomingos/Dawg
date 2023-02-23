@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class GameManager : MonoBehaviour
 
     public static ObjectPool PlayerSmallRocketPool;
     public static ObjectPool PlayerLargeRocketPool;
-    
+
+    public bool isGameOver = false;
 
     private void Awake()
     {
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             Instance = this;
         }
     }
@@ -75,5 +77,18 @@ public class GameManager : MonoBehaviour
             "PlayerSmallRocketPool").GetComponent<ObjectPool>();
         PlayerLargeRocketPool = GameObject.Find(
             "PlayerLargeRocketPool").GetComponent<ObjectPool>();
+    }
+
+    private void Update()
+    {
+        if (!isGameOver)
+        {
+            
+        }
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("MetricsMenu", LoadSceneMode.Additive);
     }
 }

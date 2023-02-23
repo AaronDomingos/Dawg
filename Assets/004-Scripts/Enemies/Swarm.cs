@@ -9,7 +9,9 @@ using Random = UnityEngine.Random;
 public class Swarm : MonoBehaviour
 {
     public int WaveNumber = 1;
-    public float WaveLength = 5f;
+    public float WaveGenerationTime = 5f;
+    public float TimeBeforeAttack = 30f;
+    public float TimeBetweenWaves = 60f;
 
     public IdDetector TargetPosition;
     public IdDetector PlayerDetector;
@@ -18,6 +20,7 @@ public class Swarm : MonoBehaviour
     public List<Swarmling> Swarmlings = new List<Swarmling>();
 
     public bool InDanger = false;
+    public bool IsAttacking = false;
 
     
     public class Wave
@@ -49,32 +52,35 @@ public class Swarm : MonoBehaviour
         int gnatsAvailable = wave.Gnats;
         int waspsAvailable = wave.Wasps;
         int beetlesAvailable = wave.Beetles;
-        foreach (WarpGate warpGate in WarpGates)
+
+        for (int i = 0; i < WarpGates.Count; i++)
         {
-            int gnats = Random.Range(0, gnatsAvailable);
+            int gnats = wave.Gnats / WarpGates.Count;
             gnatsAvailable -= gnats;
-            int wasps = Random.Range(0, waspsAvailable);
+            int wasps = wave.Wasps / WarpGates.Count;
             waspsAvailable -= wasps;
-            int beetles = Random.Range(0, beetlesAvailable);
+            int beetles = wave.Beetles / WarpGates.Count;
             beetlesAvailable -= beetles;
-            
-            warpGate.SpawnWave(new Wave(gnats, wasps, beetles, wave.TimeToSpawn));
+
+            if (i == WarpGates.Count - 1)
+            {
+                WarpGates[i].SpawnWave(new Wave(
+                    gnatsAvailable, waspsAvailable, beetlesAvailable, wave.TimeToSpawn));
+                break;
+            }
+            WarpGates[i].SpawnWave(new Wave(
+                gnats, wasps, beetles, wave.TimeToSpawn));
         }
     }
 
     private void Start()
     {
         InvokeRepeating("SpawnWarpGate", 5, 10);
-        InvokeRepeating("SpawnWave", 10, 10);
+        InvokeRepeating("SpawnWave", 10, TimeBetweenWaves);
     }
 
     private void FixedUpdate()
     {
-        // foreach (Swarmling swarmling in Swarmlings)
-        // {
-        //     swarmling.Movement.MoveTowards(TargetPosition.transform.position);
-        // }
-
         InDanger = false;
         if (PlayerDetector.DetectedObjects.Count > 0)
         {
@@ -108,15 +114,18 @@ public class Swarm : MonoBehaviour
     
     public void SpawnWave()
     {
-        Wave newWave = new Wave(WaveNumber, WaveLength);
+        IsAttacking = false;
+        Wave newWave = new Wave(WaveNumber, WaveGenerationTime);
+        Debug.Log(newWave.Gnats + ", " + newWave.Wasps + ", " + newWave.Beetles);
         DivideWaveBetweenWarpGates(newWave);
         WaveNumber++;
         
         // Invoke waveattack after an amount if time.
+        Invoke("WaveAttack", TimeBeforeAttack);
     }
 
     public void WaveAttack()
     {
-        
+        IsAttacking = true;
     }
 }

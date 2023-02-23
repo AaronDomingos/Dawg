@@ -720,14 +720,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7039880710954707695}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -813,8 +813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db3f6b9aad5749759741f29a61b40ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 5
-  MaxHealth: 5
+  CurrentHealth: 50
+  MaxHealth: 50
   CurrentStatus: 0
   SendWhenDamaged: 0
   SendWhenRepaired: 0
@@ -988,7 +988,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900457, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4a86df371674671a6cda61e5c753d6, type: 3}
@@ -1108,7 +1108,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900457, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4a86df371674671a6cda61e5c753d6, type: 3}
@@ -1133,7 +1133,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900373, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900374, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
@@ -1203,7 +1203,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: BothAAndB.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
@@ -1219,6 +1219,11 @@ PrefabInstance:
         type: 3}
       propertyPath: BothAAndB.Array.data[0].B
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: BothAAndB.Array.data[1].B
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}

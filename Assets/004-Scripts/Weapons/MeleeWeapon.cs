@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,12 @@ public class MeleeWeapon : MonoBehaviour
     
     [SerializeField] private float Cooldown;
     private bool IsCooled = true;
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        IsCooled = true;
+    }
 
     public void TryMelee()
     {
@@ -24,6 +31,16 @@ public class MeleeWeapon : MonoBehaviour
             }
             StartCoroutine("CooldownTimer");
         }
+    }
+
+    public bool ManualTryMelee()
+    {
+        if (IsCooled)
+        {
+            StartCoroutine("CooldownTimer");
+            return true;
+        }
+        return false;
     }
     
     public IEnumerator CooldownTimer()

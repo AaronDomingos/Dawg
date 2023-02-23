@@ -59,6 +59,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/000-Scenes/AD Testing/SinglePlayerTesting.unity
     guid: febfb57d4a5e9416dad940b922147009
+  - enabled: 1
+    path: Assets/000-Scenes/Menus/HowToMenu.unity
+    guid: 9214db284d4074481a10f705f3ae41e5
+  - enabled: 1
+    path: Assets/000-Scenes/Menus/MetricsMenu.unity
+    guid: 648f42706e03e417aab00d38b1288da2
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: be38202a6bf249a4a909ad8aea6f9dde,
       type: 2}

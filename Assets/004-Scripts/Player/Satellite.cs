@@ -12,6 +12,7 @@ public class Satellite : DroneControl
     
 
     private bool IsAuto = false;
+    [SerializeField] private ShotWeapon HeavyShooter;
     
     
     
@@ -57,7 +58,7 @@ public class Satellite : DroneControl
 
     public override void TryPrimaryWeapon()
     {
-        // Laser Drill
+        HeavyShooter.TryFire();
     }
 
     public override void ActivateAutoPilot()

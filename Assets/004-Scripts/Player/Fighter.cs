@@ -59,8 +59,8 @@ public class Fighter : DroneControl
         IsAuto = false;
     }
 
-    private void OnStatusDestroy()
-    {
-        transform.GetComponent<SpriteRenderer>().color = Color.red;
-    }
+    // private void OnStatusDestroy()
+    // {
+    //     transform.GetComponent<SpriteRenderer>().color = Color.red;
+    // }
 }

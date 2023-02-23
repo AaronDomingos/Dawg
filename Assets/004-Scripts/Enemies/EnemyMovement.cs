@@ -71,4 +71,9 @@ public class EnemyMovement : MonoBehaviour
         Direction = Vector3.zero;
     }
 
+    public void StopMovement()
+    {
+        Direction = Vector3.zero;
+        Momentum = Vector3.zero;
+    }
 }

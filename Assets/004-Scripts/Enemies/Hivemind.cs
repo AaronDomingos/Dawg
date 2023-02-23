@@ -7,18 +7,18 @@ public class Hivemind : MonoBehaviour
     public static Hivemind Instance;
 
     public static ObjectPool GnatPool;
-    public static float GnatHealth = 3;
+    public static float GnatHealth = 5;
     public static float GnatSpeed = .7f;
     public static float GnatBiteDamage = 1;
     
     public static ObjectPool WaspPool;
-    public static float WaspHealth = 30;
+    public static float WaspHealth = 20;
     public static float WaspSpeed = .4f;
     public static float WaspBiteDamage = 8;
     public static float WaspSpitDamage = 3;
     
     public static ObjectPool BeetlePool;
-    public static float BeetleHealth = 300;
+    public static float BeetleHealth = 50;
     public static float BeetleSpeed = .2f;
     public static float BeetleBiteDamage = 50;
     public static float BeetleSpitDamage = 10;
@@ -27,9 +27,14 @@ public class Hivemind : MonoBehaviour
     public static ObjectPool SwarmPool;
     public static ObjectPool WarpGatePool;
 
-    [SerializeField] private GameObject SwarmPrefab;
-    public static List<Swarm> AllSwarms = new List<Swarm>();
-    public static float SwarmRange = 100;
+    // [SerializeField] private GameObject SwarmPrefab;
+    // public static List<Swarm> AllSwarms = new List<Swarm>();
+    // public static float SwarmRange = 100;
+
+
+    public List<Swarm> AvailableSwarms = new List<Swarm>();
+    public float SecondsBeforeFirstActiveSwarm = 3f;
+    public float SecondsBetweenActivatingSwarms = 30;
     
 
     private void Awake()
@@ -53,9 +58,24 @@ public class Hivemind : MonoBehaviour
         SwarmPool = transform.Find("SwarmPool").GetComponent<ObjectPool>();
         WarpGatePool = transform.Find("WarpGatePool").GetComponent<ObjectPool>();
         
-        //InvokeRepeating("OpenWarpGates", 1, 5);
+        InvokeRepeating("ActivateNewSwarm", SecondsBeforeFirstActiveSwarm, SecondsBetweenActivatingSwarms);
     }
 
+    private void ActivateNewSwarm()
+    {
+        Debug.Log("Activating New Swarm");
+        if (AvailableSwarms.Count > 0)
+        {
+            int index = Random.Range(0, AvailableSwarms.Count);
+            AvailableSwarms[index].gameObject.SetActive(true);
+            AvailableSwarms.RemoveAt(index);
+            return;
+        }
+        Debug.Log("Failed to activate new swarm");
+    }
+    
+    
+    
     private void OpenWarpGates()
     {
         // Vector3 spawnPoint = (Random.insideUnitCircle.normalized * 175) + 

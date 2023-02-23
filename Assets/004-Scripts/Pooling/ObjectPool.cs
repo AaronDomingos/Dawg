@@ -26,6 +26,7 @@ public class ObjectPool : MonoBehaviour
         {
             GameObject newObj = Instantiate(ObjectPrefab,
                 DefaultPosition, Orientation.Default, transform);
+            newObj.name += (EnabledObjects.Count + DisabledObjects.Count);
             Deactivate(newObj);
         }
     }

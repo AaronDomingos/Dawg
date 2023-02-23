@@ -211,7 +211,7 @@ MonoBehaviour:
   TagsToDamage: 000000000a00000032000000
   Origin: {fileID: 2727666959977707767}
   Duration: 3
-  Damage: 1
+  Damage: 3
   Speed: 25
   IsTracking: 0
   RotationSpeed: 5
@@ -1062,8 +1062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db3f6b9aad5749759741f29a61b40ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 5
-  MaxHealth: 5
+  CurrentHealth: 50
+  MaxHealth: 50
   CurrentStatus: 0
   SendWhenDamaged: 0
   SendWhenRepaired: 0

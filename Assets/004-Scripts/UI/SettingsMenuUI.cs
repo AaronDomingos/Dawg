@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SettingsMenuUI : MonoBehaviour
 {
+    public string settingsSceneName;
     public static SettingsMenuUI settingsMenuUI { get; private set; }
 
     [SerializeField] private string mainMenuSceneName;
@@ -50,14 +51,16 @@ public class SettingsMenuUI : MonoBehaviour
     public void OnClickBackBtn()
     {
         // Disregard changes and return to main menu
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.UnloadSceneAsync(settingsSceneName);
+        //SceneManager.LoadScene(mainMenuSceneName);
     }
 
     public void OnClickSaveBtn()
     {
         // Save changes and return to main menu
         SaveSettings();
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.UnloadSceneAsync(settingsSceneName);
+        //SceneManager.LoadScene(mainMenuSceneName);
     }
 
     public void OnClickResetBtn()
@@ -68,29 +71,29 @@ public class SettingsMenuUI : MonoBehaviour
 
     private void SaveSettings()
     {
-        GameSettings.singleton.Difficulty = difficulty;
-        GameSettings.singleton.MasterVolume = masterVolume;
-        GameSettings.singleton.EffectsVolume = effectsVolume;
-        GameSettings.singleton.MusicVolume = musicVolume;
+        GameSettings.Instance.Difficulty = difficulty;
+        GameSettings.Instance.MasterVolume = masterVolume;
+        GameSettings.Instance.EffectsVolume = effectsVolume;
+        GameSettings.Instance.MusicVolume = musicVolume;
 
-        GameSettings.singleton.SaveToDisk();
+        GameSettings.Instance.SaveToDisk();
     }
 
     private void LoadSettings()
     {
-        difficulty = GameSettings.singleton.Difficulty;
-        masterVolume = GameSettings.singleton.MasterVolume;
-        effectsVolume = GameSettings.singleton.EffectsVolume;
-        musicVolume = GameSettings.singleton.MusicVolume;
+        difficulty = GameSettings.Instance.Difficulty;
+        masterVolume = GameSettings.Instance.MasterVolume;
+        effectsVolume = GameSettings.Instance.EffectsVolume;
+        musicVolume = GameSettings.Instance.MusicVolume;
     }
 
     private void ResetDefaults()
     {
         // Reset temporary values
-        difficulty = GameSettings.singleton.DifficultyDefaultVal;
-        masterVolume = GameSettings.singleton.MasterVolumeDefaultVal;
-        effectsVolume = GameSettings.singleton.EffectsVolumeDefaultVal;
-        musicVolume = GameSettings.singleton.MusicVolumeDefaultVal;
+        difficulty = GameSettings.Instance.DifficultyDefaultVal;
+        masterVolume = GameSettings.Instance.MasterVolumeDefaultVal;
+        effectsVolume = GameSettings.Instance.EffectsVolumeDefaultVal;
+        musicVolume = GameSettings.Instance.MusicVolumeDefaultVal;
     }
 
     private void UpdateSliders()

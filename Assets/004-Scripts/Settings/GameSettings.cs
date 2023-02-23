@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 /* This class stores settings data and calls the appropriate method(s) when a setting value is changed */
 public class GameSettings : MonoBehaviour
 {
-    public static GameSettings singleton { get; private set; }
+    public static GameSettings Instance { get; private set; }
 
     private float difficulty;
     private float masterVolume;
@@ -64,19 +64,20 @@ public class GameSettings : MonoBehaviour
             audioMixer.SetFloat("MasterVolume", value);
         }
     }
-
+    
     private void Awake()
     {
-        // If another instance exists and isn't this object...
-        if(singleton != null && singleton != this)
+        if (Instance != null && Instance != this)
         {
-            Destroy(this);
-        } else
+            Destroy(gameObject);
+        }
+        else
         {
-            singleton = this;
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         // On startup, load all preferences from disk to GameSettings manager
         LoadFromDisk();
@@ -101,7 +102,7 @@ public class GameSettings : MonoBehaviour
         else
         {
             // Initialize default value
-            PlayerPrefs.SetFloat("Difficulty", GameSettings.singleton.DifficultyDefaultVal);
+            PlayerPrefs.SetFloat("Difficulty", GameSettings.Instance.DifficultyDefaultVal);
             // And load it into the game
             difficulty = PlayerPrefs.GetFloat("Difficulty");
         }
@@ -115,7 +116,7 @@ public class GameSettings : MonoBehaviour
         else
         {
             // Initialize default value
-            PlayerPrefs.SetFloat("MasterVolume", GameSettings.singleton.MasterVolumeDefaultVal);
+            PlayerPrefs.SetFloat("MasterVolume", GameSettings.Instance.MasterVolumeDefaultVal);
             // And load it into the game
             masterVolume = PlayerPrefs.GetFloat("MasterVolume");
         }
@@ -129,7 +130,7 @@ public class GameSettings : MonoBehaviour
         else
         {
             // Initialize default value
-            PlayerPrefs.SetFloat("EffectsVolume", GameSettings.singleton.EffectsVolumeDefaultVal);
+            PlayerPrefs.SetFloat("EffectsVolume", GameSettings.Instance.EffectsVolumeDefaultVal);
             // And load it into the game
             effectsVolume = PlayerPrefs.GetFloat("EffectsVolume");
         }
@@ -143,7 +144,7 @@ public class GameSettings : MonoBehaviour
         else
         {
             // Initialize default value
-            PlayerPrefs.SetFloat("MusicVolume", GameSettings.singleton.MusicVolumeDefaultVal);
+            PlayerPrefs.SetFloat("MusicVolume", GameSettings.Instance.MusicVolumeDefaultVal);
             // And load it into the game
             musicVolume = PlayerPrefs.GetFloat("MusicVolume");
         }

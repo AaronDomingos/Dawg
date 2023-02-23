@@ -83,6 +83,12 @@ public class Wasp : Swarmling
             return;
         }
         
+        if (MySwarm.IsAttacking)
+        {
+            Movement.MoveTowards(Vector3.zero);
+            return;
+        }
+        
         // Swarm Actions
         if (MySwarm != null)
         {
@@ -96,16 +102,28 @@ public class Wasp : Swarmling
     {
         if (BiteZone.DetectedObjects.Count > 0)
         {
-            if (!IsAttached)
+            if (BiteZone.DetectedObjects[0].TryGetComponent(out Identity identity) && 
+                identity.TagsKnownAs.Contains(Identification.Tags.Mothership))
             {
-                if (BiteZone.DetectedObjects[0].TryGetComponent(out Asteroid asteroid))
+                Movement.StopMovement();
+                if (Bite.ManualTryMelee())
                 {
-                    AttachToObject(asteroid.transform);
-                    HarvestMaterium();
+                    GameManager.Mothership.MothershipHealth.Damage(Bite.Damage);
                     return;
                 }
             }
             Bite.TryMelee();
+
+            // if (!IsAttached)
+            // {
+            //     if (BiteZone.DetectedObjects[0].TryGetComponent(out Asteroid asteroid))
+            //     {
+            //         AttachToObject(asteroid.transform);
+            //         HarvestMaterium();
+            //         return;
+            //     }
+            // }
+            // Bite.TryMelee();
         }
     }
 
@@ -147,6 +165,6 @@ public class Wasp : Swarmling
         MySwarm.Swarmlings.Remove(this);
         MySwarm = null;
         
-        Hivemind.GnatPool.Deactivate(gameObject);
+        Hivemind.WaspPool.Deactivate(gameObject);
     }
 }

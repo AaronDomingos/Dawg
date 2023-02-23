@@ -8,24 +8,37 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private string gameSceneName;
     [SerializeField] private string settingsSceneName;
+    [SerializeField] private string howToSceneName;
 
     private void Start()
     {
-        AudioController.singleton.PlayMusicClip(
-            AudioController.singleton.Background1);
+        AudioController.Instance.PlayMusicClip(
+            AudioController.Instance.Background1);
     }
 
     public void OnClickPlayBtn()
     {
-        AudioController.singleton.PlayGuiEffect(
-            AudioController.singleton.Interaction);
+        AudioController.Instance.PlayGuiEffect(
+            AudioController.Instance.Interaction);
         SceneManager.LoadScene(gameSceneName);
     }
 
     public void OnClickSettingsBtn()
     {
-        AudioController.singleton.PlayGuiEffect(
-            AudioController.singleton.Interaction);
-        SceneManager.LoadScene(settingsSceneName);
+        AudioController.Instance.PlayGuiEffect(
+            AudioController.Instance.Interaction);
+        SceneManager.LoadScene(settingsSceneName, LoadSceneMode.Additive);
+    }
+
+    public void OnClickHowToButn()
+    {
+        AudioController.Instance.PlayGuiEffect(
+            AudioController.Instance.Interaction);
+        SceneManager.LoadScene(howToSceneName, LoadSceneMode.Additive);
+    }
+
+    public void OnClickCloseGame()
+    {
+        Application.Quit();
     }
 }

@@ -58,4 +58,10 @@ public class DroneControl : MonoBehaviour
     {
         Debug.Log("Deactivating auto pilot");
     }
+
+    public void OnStatusDestroy()
+    {
+        GameManager.Player.RemovePlayable(gameObject);
+        Destroy(gameObject);
+    }
 }

@@ -55,6 +55,13 @@ public class Gnat : Swarmling
             return;
         }
 
+        // If swarm is ready to attack.
+        if (MySwarm.IsAttacking)
+        {
+            Movement.MoveTowards(Vector3.zero);
+            return;
+        }
+
         if (MySwarm != null)
         {
             Movement.MoveTowards(MySwarm.TargetPosition.transform.position);
@@ -69,6 +76,16 @@ public class Gnat : Swarmling
     {
         if (BiteZone.DetectedObjects.Count > 0)
         {
+            if (BiteZone.DetectedObjects[0].TryGetComponent(out Identity identity) && 
+                identity.TagsKnownAs.Contains(Identification.Tags.Mothership))
+            {
+                Movement.StopMovement();
+                if (Bite.ManualTryMelee())
+                {
+                    GameManager.Mothership.MothershipHealth.Damage(Bite.Damage);
+                    return;
+                }
+            }
             Bite.TryMelee();
         }
     }

@@ -411,8 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db3f6b9aad5749759741f29a61b40ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 10
-  MaxHealth: 10
+  CurrentHealth: 5
+  MaxHealth: 5
   CurrentStatus: 0
   SendWhenDamaged: 0
   SendWhenRepaired: 0
@@ -632,12 +632,12 @@ PrefabInstance:
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: BothAAndB.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: TagsToDetect.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
@@ -646,8 +646,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
+      propertyPath: BothAAndB.Array.data[1].B
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
       propertyPath: TagsToDetect.Array.data[1]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: TagsToDetect.Array.data[2]
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900456, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}

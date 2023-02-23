@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class AudioController : MonoBehaviour
 {
-    public static AudioController singleton { get; private set; }
+    public static AudioController Instance;
 
     [SerializeField] private AudioSource guiEffectsSource;
     [SerializeField] private AudioSource gameEffectsSource;
@@ -17,7 +17,26 @@ public class AudioController : MonoBehaviour
 
     public AudioClip Background1;
     public AudioClip Interaction;
-    
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            //DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        
+        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(guiEffectsSource);
+        DontDestroyOnLoad(gameEffectsSource);
+        DontDestroyOnLoad(playerEffectsSource);
+        DontDestroyOnLoad(musicSource);
+    }
+
 
     public void PlayGuiEffect(AudioClip audioClip)
     {
@@ -43,22 +62,22 @@ public class AudioController : MonoBehaviour
         musicSource.Play();
     }
 
-    private void Awake()
-    {
-        if(singleton != null && singleton != this)
-        {
-            Destroy(this);
-        } else
-        {
-            singleton = this;
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(guiEffectsSource);
-        DontDestroyOnLoad(gameEffectsSource);
-        DontDestroyOnLoad(playerEffectsSource);
-        DontDestroyOnLoad(musicSource);
-    }
+    // private void Awake()
+    // {
+    //     if(Instance != null && Instance != this)
+    //     {
+    //         Destroy(this);
+    //     } else
+    //     {
+    //         Instance = this;
+    //     }
+    //
+    //     DontDestroyOnLoad(this.gameObject);
+    //     DontDestroyOnLoad(guiEffectsSource);
+    //     DontDestroyOnLoad(gameEffectsSource);
+    //     DontDestroyOnLoad(playerEffectsSource);
+    //     DontDestroyOnLoad(musicSource);
+    // }
 
     public void ChangeVolume(string channel, float value)
     {

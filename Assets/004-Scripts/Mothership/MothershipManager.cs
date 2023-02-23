@@ -49,4 +49,10 @@ public class MothershipManager : MonoBehaviour
         HealthSlider.value = MothershipHealth.CurrentHealth;
         EngineSlider.value = EngineHealth.CurrentHealth;
     }
+
+    public void OnStatusDestroy()
+    {
+        Debug.Log("GameOver!");
+        GameManager.Instance.GameOver();
+    }
 }

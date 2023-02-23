@@ -10,11 +10,16 @@ public class Miner : DroneControl
 
     private bool IsAuto = false;
     
+    [SerializeField] private ShotWeapon HeavyShooter;
     
     
     private void FixedUpdate()
     {
-        if (IsAuto) {TryPrimaryWeapon();}
+        if (IsAuto)
+        {
+            // Add in check for enemy in range, and then rotate towards that.
+            //TryPrimaryWeapon();
+        }
         
         if (MateriumDetector.DetectedObjects.Count > 0)
         {
@@ -38,7 +43,7 @@ public class Miner : DroneControl
 
     public override void TryPrimaryWeapon()
     {
-        // Laser Drill
+        HeavyShooter.TryFire();
     }
 
     public override void ActivateAutoPilot()

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5773166424416225600}
   - component: {fileID: 5674126322871306345}
+  - component: {fileID: 5478970076803406296}
   m_Layer: 0
   m_Name: SpitWeapon
   m_TagString: Untagged
@@ -43,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe70a410aca4b4d5fbc75b67094c50e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
-  clip: {fileID: 0}
+  audio: {fileID: 5478970076803406296}
+  clip: {fileID: 8300000, guid: 5f08923a07115448cbee05b615052bea, type: 3}
   WeaponShotType: 3
   TagsToCollide: 000000000a000000020000001e0000003200000064000000
   TagsToDamage: 00000000020000003200000064000000
@@ -56,6 +57,103 @@ MonoBehaviour:
   RotationSpeed: 5
   Cooldown: 0.5
   IsCooled: 1
+--- !u!82 &5478970076803406296
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254899102982639220}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -3359914702957288916, guid: f8de095299aca41af9db67aa6016e951,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &630002316866163243
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a72e5c3164c43b2adafe57e134661a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeleeZone: {fileID: 0}
+  MeleeZone: {fileID: 2062296897970282304}
   Damage: 5
   Cooldown: 1
 --- !u!1 &3430117458971307731
@@ -152,14 +250,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3430117458971307731}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -245,10 +343,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db3f6b9aad5749759741f29a61b40ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 5
-  MaxHealth: 5
+  CurrentHealth: 20
+  MaxHealth: 20
   CurrentStatus: 0
-  SendWhenDamaged: 1
+  SendWhenDamaged: 0
   SendWhenRepaired: 0
   SendStatusHealthy: 0
   SendStatusDamaged: 0
@@ -536,6 +634,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AvoidanceZone
       objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900373, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900374, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -634,7 +737,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900457, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4a86df371674671a6cda61e5c753d6, type: 3}
@@ -740,18 +843,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
+      propertyPath: BothAAndB.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
       propertyPath: TagsToDetect.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
+      propertyPath: BothAAndB.Array.data[0].B
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
       propertyPath: TagsToDetect.Array.data[1]
-      value: 50
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900457, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4a86df371674671a6cda61e5c753d6, type: 3}
@@ -793,12 +906,12 @@ PrefabInstance:
     - target: {fileID: 5556774903346900374, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900374, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900374, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
@@ -808,7 +921,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900374, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900374, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
@@ -852,8 +965,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
+      propertyPath: BothAAndB.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
       propertyPath: TagsToDetect.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: BothAAndB.Array.data[0].B
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
@@ -873,7 +996,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900457, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4a86df371674671a6cda61e5c753d6, type: 3}
@@ -974,8 +1097,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
+      propertyPath: BothAAndB.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
       propertyPath: TagsToDetect.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
+        type: 3}
+      propertyPath: BothAAndB.Array.data[0].B
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5556774903346900375, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
@@ -995,7 +1128,7 @@ PrefabInstance:
     - target: {fileID: 5556774903346900457, guid: cf4a86df371674671a6cda61e5c753d6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4a86df371674671a6cda61e5c753d6, type: 3}
